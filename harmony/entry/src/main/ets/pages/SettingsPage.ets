@@ -54,6 +54,7 @@ export struct SettingsPage {
     touchMode: 'trackpad',
     clipboardPolicy: 'manual',
     keepScreenOn: false,
+    backgroundRemoteControl: true,
     autoStartPiP: false,
     smartReachEnabled: true,
     controlBarPosition: 'center'
@@ -99,6 +100,7 @@ export struct SettingsPage {
       touchMode: this.touchMode,
       clipboardPolicy: clipboard ?? this.settings.clipboardPolicy,
       keepScreenOn: this.settings.keepScreenOn,
+      backgroundRemoteControl: this.settings.backgroundRemoteControl,
       autoStartPiP: this.settings.autoStartPiP,
       smartReachEnabled: this.settings.smartReachEnabled,
       controlBarPosition: this.settings.controlBarPosition
@@ -237,6 +239,16 @@ export struct SettingsPage {
             this.service?.setKeepScreenOn(checked);
           } } } })
       }.id('settings.keepScreenOn')
+      ListItem() {
+        ComposeListItem({ contentItem: { primaryText: tr('后台远程控制') },
+          operateItem: { switch: { isCheck: this.settings.backgroundRemoteControl, onChange: (enabled: boolean) => {
+            this.service?.setBackgroundRemoteControl(enabled).then(() => {
+              this.settings.backgroundRemoteControl = enabled;
+            }).catch((error: Error) => {
+              this.getUIContext().getPromptAction().showToast({ message: error.message });
+            });
+          } } } })
+      }.id('settings.backgroundRemoteControl')
       ListItem() {
         ComposeListItem({ contentItem: { primaryText: tr('自动启动画中画') },
           operateItem: { switch: { isCheck: this.settings.autoStartPiP, onChange: (enabled: boolean) => {

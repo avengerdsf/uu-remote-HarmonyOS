@@ -78,6 +78,7 @@ export abstract class BaseSessionService implements SessionService {
     touchMode: 'trackpad',
     clipboardPolicy: 'manual',
     keepScreenOn: false,
+    backgroundRemoteControl: true,
     autoStartPiP: false,
     smartReachEnabled: true,
     controlBarPosition: 'center'
@@ -231,6 +232,12 @@ export abstract class BaseSessionService implements SessionService {
   async setKeepScreenOn(enabled: boolean): Promise<void> {
     this.settingsState.keepScreenOn = enabled;
   }
+
+  async setBackgroundRemoteControl(enabled: boolean): Promise<void> {
+    this.settingsState.backgroundRemoteControl = enabled;
+  }
+
+  setAppForeground(foreground: boolean): void {}
 
   async setAutoStartPiP(enabled: boolean): Promise<void> {
     this.settingsState.autoStartPiP = enabled;

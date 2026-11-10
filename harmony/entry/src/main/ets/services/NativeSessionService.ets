@@ -1,5 +1,6 @@
 import { i18n } from '@kit.LocalizationKit';
 import { tr } from '../model/I18n';
+import { RemoteSessionBackground } from './RemoteSessionBackground';
 import { applyMaterialPreference } from '../theme/MaterialPreference';
 import { common } from '@kit.AbilityKit';
 import { display } from '@kit.ArkUI';
@@ -219,9 +220,22 @@ export class NativeSessionService extends BaseSessionService {
   private pendingDownloads: Map<string, string> = new Map<string, string>();
   private credentialWrite: Promise<void> = Promise.resolve();
   private touchModeWrite: Promise<void> = Promise.resolve();
+  private backgroundPreferenceWrite: Promise<void> = Promise.resolve();
+  private background: RemoteSessionBackground | null = null;
+  private audioStarted: boolean = false;
+  private foreground: boolean = true;
+  private directDeviceId: string = '';
+  private backgroundGeneration: number = -1;
+  private resumeUntil: number = 0;
+  private resumeDeviceId: string = '';
+  private reconnectGeneration: number = -1;
+  private reconnectRenderedBaseline: number = 0;
+  private reconnectCleaning: boolean = false;
+  private resumeEpoch: number = 0;
 
   async init(context: common.UIAbilityContext): Promise<void> {
     this.context = context;
+    this.background = new RemoteSessionBackground(context);
     this.store = await preferences.getPreferences(context, 'uu_remote_settings');
     await this.loadSettings();
     const config = await this.buildConfig(context);
@@ -256,6 +270,9 @@ export class NativeSessionService extends BaseSessionService {
   }
 
   dispose(): void {
+    this.clearBackgroundResume();
+    this.background?.update(-1, false, false);
+    this.background = null;
     this.publishAccountIdSuffix('');
     this.pendingOperations.forEach((pending: PendingOperation) => {
       clearTimeout(pending.timer);
@@ -353,7 +370,9 @@ export class NativeSessionService extends BaseSessionService {
       this.counters.renderFailures = native.renderFailures;
       this.counters.lastInputPtsUs = native.lastInputPtsUs;
       this.counters.lastOutputPtsUs = native.lastOutputPtsUs;
-      if (native.framesRendered > 0 && this.attachedSurface.length > 0 && !this.session.firstFrameReceived &&
+      if (native.framesRendered > 0 && native.framesRendered !== this.reconnectRenderedBaseline &&
+        this.session.generation > this.reconnectGeneration &&
+        this.attachedSurface.length > 0 && !this.session.firstFrameReceived &&
         Date.now() - this.lastRenderedNotice >= 250) {
         // Surface callbacks can precede installation of the asynchronous session handle.
         this.lastRenderedNotice = Date.now();
@@ -419,6 +438,7 @@ export class NativeSessionService extends BaseSessionService {
       touchMode: value.touchMode,
       clipboardPolicy: value.clipboardPolicy,
       keepScreenOn: value.keepScreenOn,
+      backgroundRemoteControl: value.backgroundRemoteControl,
       autoStartPiP: value.autoStartPiP,
       smartReachEnabled: value.smartReachEnabled,
       controlBarPosition: value.controlBarPosition
@@ -504,15 +524,27 @@ export class NativeSessionService extends BaseSessionService {
       this.emitDevices();
     } else if (event.type === 'sessionState') {
       const snapshot = JSON.parse(payload) as SessionSnapshot;
+      if (this.reconnectCleaning && snapshot.phase === SessionPhase.Ended) {
+        this.reconnectGeneration = Math.max(this.reconnectGeneration, snapshot.generation);
+        return;
+      }
+      if (snapshot.generation <= this.reconnectGeneration) { return; }
       if (snapshot.generation < this.session.generation) { return; }
       if (snapshot.generation === this.session.generation && this.session.phase === SessionPhase.Ended &&
         snapshot.phase !== SessionPhase.Ended) { return; }
-      if (snapshot.generation !== this.session.generation) { this.resetTools(); }
+      if (snapshot.generation !== this.session.generation) { this.resetTools(); this.audioStarted = false; }
       else if (snapshot.phase !== SessionPhase.Ended) {
         snapshot.remoteCursorInVideo = this.session.remoteCursorInVideo;
         snapshot.remoteUnlock = this.session.remoteUnlock;
       }
+      if (BuildProfile.DEBUG && snapshot.phase === SessionPhase.Ended && this.session.phase !== SessionPhase.Ended) {
+        const known = ['peer connection closed', 'video track ended', 'remote session released', 'First video frame timed out'];
+        const reason = known.find((value: string) => tr(value) === snapshot.error) ?? (snapshot.error === null ? 'normal' : 'other');
+        console.info('UU_BG_REMOTE session ended: ' + reason);
+      }
+      if (this.queueBackgroundResume(snapshot)) { return; }
       this.session = snapshot;
+      this.updateBackground();
       this.emitSession();
     } else if (event.type === 'inputError' || event.type === 'videoSettingsError') {
       const value = JSON.parse(payload) as GenerationEvent;
@@ -525,12 +557,20 @@ export class NativeSessionService extends BaseSessionService {
       this.emitSession();
     } else if (event.type === 'firstFrame') {
       const value = JSON.parse(payload) as GenerationEvent;
-      if (value.generation !== this.session.generation || this.session.phase === SessionPhase.Ended) { return; }
+      if (value.generation !== this.session.generation || value.generation <= this.reconnectGeneration ||
+        this.session.phase === SessionPhase.Ended) { return; }
       const session = this.copySession();
       session.phase = session.viewOnly ? SessionPhase.ViewOnly : SessionPhase.Playing;
       session.firstFrameReceived = true;
       this.session = session;
+      this.updateBackground();
       this.emitSession();
+    } else if (event.type === 'audioStarted') {
+      const value = JSON.parse(payload) as GenerationEvent;
+      if (value.generation === this.session.generation && this.session.phase !== SessionPhase.Ended) {
+        this.audioStarted = true;
+        this.updateBackground();
+      }
     } else if (event.type === 'filesState') {
       const snapshot = JSON.parse(payload) as FilesSnapshot;
       this.files = this.filesWith(snapshot, this.files.transfers, snapshot.error);
@@ -604,6 +644,10 @@ export class NativeSessionService extends BaseSessionService {
       }
       this.counters.mediaPackets = counts.mediaPackets;
       this.counters.audioFrames = counts.audioFrames;
+      if (!this.audioStarted && counts.audioFrames > 0 && this.session.phase !== SessionPhase.Ended) {
+        this.audioStarted = true;
+        this.updateBackground();
+      }
       this.counters.rttMs = counts.rttMs;
       this.counters.route = counts.route;
       this.counters.fps = counts.fps;
@@ -713,6 +757,7 @@ export class NativeSessionService extends BaseSessionService {
     }
   }
   async remoteAction(action: string, enabled: boolean): Promise<void> {
+    if (action === 'shutdown' || action === 'reboot') { this.clearBackgroundResume(); }
     await this.operation('remoteAction', { action: action, enabled: enabled });
   }
   async mkdir(path: string): Promise<void> { await this.operation('mkdir', { path: path }); }
@@ -733,6 +778,9 @@ export class NativeSessionService extends BaseSessionService {
   }
 
   async connect(deviceId: string, force: boolean = false): Promise<void> {
+    this.clearBackgroundResume();
+    this.directDeviceId = deviceId;
+    this.reconnectRenderedBaseline = 0;
     this.resetVideoSync();
     this.attachedSurface = '';
     this.lastRenderedNotice = 0;
@@ -740,6 +788,9 @@ export class NativeSessionService extends BaseSessionService {
   }
 
   async joinShare(connectId: string, verifyCode: string): Promise<void> {
+    this.clearBackgroundResume();
+    this.directDeviceId = '';
+    this.reconnectRenderedBaseline = 0;
     this.resetVideoSync();
     this.attachedSurface = '';
     this.lastRenderedNotice = 0;
@@ -747,20 +798,26 @@ export class NativeSessionService extends BaseSessionService {
   }
 
   async disconnect(): Promise<void> {
+    this.clearBackgroundResume();
+    this.directDeviceId = '';
+    await this.closeSession();
+  }
+
+  private closeSession(): Promise<void> {
     if (this.disconnectTask === null) {
       this.disconnectTask = this.operation('disconnect', {}).finally(() => { this.disconnectTask = null; });
     }
-    await this.disconnectTask;
+    return this.disconnectTask;
   }
 
   async sendInput(json: string): Promise<void> {
-    if (this.pipActive) { return; }
+    if (this.pipActive || this.session.phase === SessionPhase.Reconnecting) { return; }
     await this.sendCommand('sendInput', { json: json });
     if (BuildProfile.DEBUG && !this.inputLogged) { this.inputLogged = true; console.info('UU_INPUT_COMMAND_ACCEPTED'); }
   }
 
   async sendText(text: string): Promise<void> {
-    if (this.pipActive) { return; }
+    if (this.pipActive || this.session.phase === SessionPhase.Reconnecting) { return; }
     await this.sendCommand('sendText', { text: text });
   }
 
@@ -862,6 +919,7 @@ export class NativeSessionService extends BaseSessionService {
     const touch = await this.store.get('touchMode', 'trackpad') as string;
     const clipboard = await this.store.get('clipboardPolicy', 'manual') as string;
     const keepScreenOn = await this.store.get('keepScreenOn', false) as boolean;
+    const backgroundRemoteControl = await this.store.get('backgroundRemoteControl', true) as boolean;
     const autoStartPiP = await this.store.get('autoStartPiP', false) as boolean;
     const smartReachEnabled = await this.store.get('smartReachEnabled', true) as boolean;
     const position = await this.store.get('controlBarPosition', 'center') as string;
@@ -875,6 +933,7 @@ export class NativeSessionService extends BaseSessionService {
       touchMode: touch === 'direct' ? 'direct' : 'trackpad',
       clipboardPolicy: clipboard as ClipboardPolicy,
       keepScreenOn: keepScreenOn,
+      backgroundRemoteControl: backgroundRemoteControl,
       autoStartPiP: autoStartPiP,
       smartReachEnabled: smartReachEnabled,
       controlBarPosition: position === 'left' || position === 'right' ? position : 'center'
@@ -986,14 +1045,97 @@ export class NativeSessionService extends BaseSessionService {
   }
 
   async setAudioMuted(muted: boolean): Promise<void> {
-    this.audioMutedState = muted;
     await this.sendCommand('setAudioMuted', { muted: muted });
+    this.audioMutedState = muted;
+    this.updateBackground();
   }
 
   async setAudioVolume(volume: number): Promise<void> {
     if (!Number.isFinite(volume) || volume < 0 || volume > 100) { throw new Error(tr('音量应在 0–100 之间')); }
     if (nativeCore.setAudioVolume(this.handle, Math.round(volume) / 100) !== 0) { throw new Error(tr('音量调整失败')); }
     await super.setAudioVolume(volume);
+    this.updateBackground();
+  }
+
+  private updateBackground(): void {
+    const active = this.settingsState.backgroundRemoteControl && this.session.phase !== SessionPhase.Ended &&
+      this.session.generation > this.reconnectGeneration;
+    const connected = active && (this.session.phase === SessionPhase.Playing || this.session.phase === SessionPhase.ViewOnly);
+    const audioPlaying = active && this.audioStarted && !this.audioMutedState && this.audioVolumeState > 0;
+    this.background?.update(active ? this.session.generation : -1, connected, audioPlaying,
+      active ? this.session.targetName : '');
+  }
+
+  setAppForeground(foreground: boolean): void {
+    if (this.foreground === foreground) { return; }
+    this.foreground = foreground;
+    if (foreground) {
+      // The core may report a socket failure only after the app has thawed.
+      this.resumeUntil = Date.now() + 15000;
+      this.resumeRemoteDevice();
+    } else if (this.settingsState.backgroundRemoteControl && Router.current() === 'session' &&
+      this.session.phase !== SessionPhase.Ended &&
+      this.session.firstFrameReceived && this.session.targetId === this.directDeviceId && this.directDeviceId.length > 0) {
+      this.backgroundGeneration = this.session.generation;
+    }
+  }
+
+  private queueBackgroundResume(snapshot: SessionSnapshot): boolean {
+    if (snapshot.phase !== SessionPhase.Ended || snapshot.generation !== this.backgroundGeneration ||
+      !this.settingsState.backgroundRemoteControl || Router.current() !== 'session' ||
+      (this.foreground && Date.now() > this.resumeUntil) ||
+      (snapshot.error !== tr('peer connection closed') && snapshot.error !== tr('video track ended'))) { return false; }
+    this.backgroundGeneration = -1;
+    this.resumeDeviceId = this.directDeviceId;
+    this.reconnectGeneration = snapshot.generation;
+    const reconnecting = this.copySession();
+    reconnecting.phase = SessionPhase.Reconnecting;
+    reconnecting.firstFrameReceived = false;
+    reconnecting.error = null;
+    this.session = reconnecting;
+    this.background?.update(-1, false, false);
+    this.emitSession();
+    this.resumeRemoteDevice();
+    return true;
+  }
+
+  private resumeRemoteDevice(): void {
+    if (!this.foreground || this.resumeDeviceId.length === 0 || Router.current() !== 'session') { return; }
+    const deviceId = this.resumeDeviceId;
+    this.resumeDeviceId = '';
+    const epoch = ++this.resumeEpoch;
+    this.reconnectCleaning = true;
+    this.closeSession().catch((error: Error) => {
+      // The dead socket cannot acknowledge leave. Local cleanup still completed; rejoin without takeover.
+      if (error.message !== tr('信令清理失败，远端会话释放尚未确认') &&
+        error.message !== tr('信令清理超时，远端会话释放尚未确认')) { throw error; }
+    }).then(() => {
+      if (epoch !== this.resumeEpoch) { return; }
+      this.reconnectCleaning = false;
+      if (!this.foreground) { this.resumeDeviceId = deviceId; return; }
+      if (Router.current() !== 'session') { return; }
+      this.reconnectRenderedBaseline = this.counters.framesRendered;
+      this.resetVideoSync();
+      this.lastRenderedNotice = 0;
+      console.info('UU_BG_REMOTE reconnect requested');
+      return this.sendCommand('connect', { deviceId: deviceId, force: false });
+    }).catch((error: Error) => {
+      if (epoch !== this.resumeEpoch || this.session.phase !== SessionPhase.Reconnecting) { return; }
+      this.reconnectCleaning = false;
+      const ended = this.copySession();
+      ended.phase = SessionPhase.Ended;
+      ended.error = error.message;
+      this.session = ended;
+      this.emitSession();
+    });
+  }
+
+  private clearBackgroundResume(): void {
+    this.resumeEpoch++;
+    this.reconnectCleaning = false;
+    this.backgroundGeneration = -1;
+    this.resumeDeviceId = '';
+    this.reconnectGeneration = -1;
   }
 
   setTouchMode(mode: TouchMode): Promise<void> {
@@ -1019,6 +1161,17 @@ export class NativeSessionService extends BaseSessionService {
   async setKeepScreenOn(enabled: boolean): Promise<void> {
     await super.setKeepScreenOn(enabled);
     await this.persist('keepScreenOn', enabled);
+  }
+
+  setBackgroundRemoteControl(enabled: boolean): Promise<void> {
+    const update = this.backgroundPreferenceWrite.catch(() => {}).then(async () => {
+      await this.persist('backgroundRemoteControl', enabled);
+      await super.setBackgroundRemoteControl(enabled);
+      if (!enabled) { this.clearBackgroundResume(); }
+      this.updateBackground();
+    });
+    this.backgroundPreferenceWrite = update;
+    return update;
   }
 
   async setAutoStartPiP(enabled: boolean): Promise<void> {
@@ -1296,6 +1449,8 @@ export class NativeSessionService extends BaseSessionService {
   }
 
   async logout(): Promise<void> {
+    this.clearBackgroundResume();
+    this.directDeviceId = '';
     this.login.generation++;
     this.devices.generation++;
     await this.sendCommand('logout', {});

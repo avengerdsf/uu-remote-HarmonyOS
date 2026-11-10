@@ -87,6 +87,8 @@ export interface SessionService {
   setTouchMode(mode: TouchMode): Promise<void>;
   setClipboardPolicy(policy: ClipboardPolicy): Promise<void>;
   setKeepScreenOn(enabled: boolean): Promise<void>;
+  setBackgroundRemoteControl(enabled: boolean): Promise<void>;
+  setAppForeground(foreground: boolean): void;
   setAutoStartPiP(enabled: boolean): Promise<void>;
   setSmartReachEnabled(enabled: boolean): Promise<void>;
   setControlBarPosition(position: ControlBarPosition): Promise<void>;

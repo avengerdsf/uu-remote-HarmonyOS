@@ -3646,6 +3646,19 @@ export default function multiDeviceRegression(): void {
         await mock.setMaterialPreference(material); await route('devices');
       }
     });
+    it('background_remote_control_switch_keeps_its_value_across_settings_navigation', 0, async () => {
+      const original = mock.settings().backgroundRemoteControl;
+      const id = 'settings.backgroundRemoteControl';
+      try {
+        await mock.setBackgroundRemoteControl(true);
+        await generalSettings(); await revealSetting(id);
+        await (await driver.findComponent(ON.type('Toggle').within(ON.id(id)))).click(); await settle();
+        expect(mock.settings().backgroundRemoteControl).assertFalse();
+        await route('devices'); await generalSettings(); await revealSetting(id);
+        await (await driver.findComponent(ON.type('Toggle').within(ON.id(id)))).click(); await settle();
+        expect(mock.settings().backgroundRemoteControl).assertTrue();
+      } finally { await mock.setBackgroundRemoteControl(original); await route('devices'); }
+    });
     it('settings_inline_values_and_detail_navigation', 0, async () => {
       const original = mock.settings();
       const keepScreenOn = original.keepScreenOn;

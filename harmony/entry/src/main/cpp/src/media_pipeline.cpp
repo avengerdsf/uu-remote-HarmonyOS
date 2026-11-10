@@ -684,6 +684,7 @@ void MediaPipeline::StartAudioLocked(int32_t sampleRate, int32_t channels) {
     OH_AudioStreamBuilder_SetChannelCount(builder, channels);
     OH_AudioStreamBuilder_SetSampleFormat(builder, AUDIOSTREAM_SAMPLE_S16LE);
     OH_AudioStreamBuilder_SetEncodingType(builder, AUDIOSTREAM_ENCODING_TYPE_RAW);
+    OH_AudioStreamBuilder_SetRendererInfo(builder, AUDIOSTREAM_USAGE_MOVIE);
     OH_AudioStreamBuilder_SetRendererWriteDataCallback(builder, &MediaPipeline::OnAudioWrite, this);
     OH_AudioRenderer* renderer = nullptr;
     if (OH_AudioStreamBuilder_GenerateRenderer(builder, &renderer) != AUDIOSTREAM_SUCCESS) {

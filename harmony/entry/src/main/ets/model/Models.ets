@@ -152,6 +152,7 @@ export interface SettingsState {
   touchMode: TouchMode;
   clipboardPolicy: ClipboardPolicy;
   keepScreenOn: boolean;
+  backgroundRemoteControl: boolean;
   autoStartPiP: boolean;
   smartReachEnabled: boolean;
   controlBarPosition: ControlBarPosition;

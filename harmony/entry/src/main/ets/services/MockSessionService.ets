@@ -551,6 +551,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: this.settingsState.touchMode,
       clipboardPolicy: this.settingsState.clipboardPolicy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition
@@ -569,6 +570,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: this.settingsState.touchMode,
       clipboardPolicy: this.settingsState.clipboardPolicy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition
@@ -586,6 +588,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: this.settingsState.touchMode,
       clipboardPolicy: this.settingsState.clipboardPolicy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition
@@ -603,6 +606,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: this.settingsState.touchMode,
       clipboardPolicy: this.settingsState.clipboardPolicy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition
@@ -620,6 +624,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: this.settingsState.touchMode,
       clipboardPolicy: this.settingsState.clipboardPolicy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition
@@ -644,6 +649,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: mode,
       clipboardPolicy: this.settingsState.clipboardPolicy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition
@@ -662,6 +668,7 @@ export class MockSessionService extends BaseSessionService {
       touchMode: this.settingsState.touchMode,
       clipboardPolicy: policy,
       keepScreenOn: this.settingsState.keepScreenOn,
+      backgroundRemoteControl: this.settingsState.backgroundRemoteControl,
       autoStartPiP: this.settingsState.autoStartPiP,
       smartReachEnabled: this.settingsState.smartReachEnabled,
       controlBarPosition: this.settingsState.controlBarPosition

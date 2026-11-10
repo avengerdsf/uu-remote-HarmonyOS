@@ -37,10 +37,12 @@ export default class EntryAbility extends UIAbility {
 
   onForeground(): void {
     AppStorage.setOrCreate('deviceListForeground', true);
+    if (ServiceHub.isReady()) { ServiceHub.service().setAppForeground(true); }
   }
 
   onBackground(): void {
     AppStorage.setOrCreate('deviceListForeground', false);
+    if (ServiceHub.isReady()) { ServiceHub.service().setAppForeground(false); }
   }
 
   async onWindowStageCreate(windowStage: window.WindowStage): Promise<void> {

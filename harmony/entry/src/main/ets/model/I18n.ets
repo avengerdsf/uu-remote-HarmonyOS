@@ -66,6 +66,8 @@ const ENGLISH: Map<string, string> = new Map<string, string>([
   ["流畅度与色彩", "Motion and color"],
   ["应用信息", "App information"],
   ["远控时保持亮屏", "Keep screen on during remote control"],
+  ["后台远程控制", "Keep remote control connected in background"],
+  ["远程控制", "Remote control"],
   ["直接触控", "Direct touch"],
   ["触控板", "Trackpad"],
   ["虚拟鼠标", "Virtual mouse"],

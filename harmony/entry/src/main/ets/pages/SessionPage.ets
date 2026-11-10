@@ -201,7 +201,10 @@ export struct SessionPage {
     if (previous !== null && previous !== this.landscape) { this.subscribeHoldingHand(); }
   };
   private onSessionWindowEvent = (event: window.WindowEventType): void => {
-    if (event === window.WindowEventType.WINDOW_HIDDEN) { this.armedKeyboardKeys = []; }
+    if (event === window.WindowEventType.WINDOW_HIDDEN) {
+      this.armedKeyboardKeys = [];
+      this.service?.releaseAllInput().catch(() => {});
+    }
     if (this.active && event === window.WindowEventType.WINDOW_SHOWN && this.pipState === PiPWindow.PiPState.STARTED) {
       this.pipController?.stopPiP().catch(() => { console.info('Session picture-in-picture window did not stop'); });
     }

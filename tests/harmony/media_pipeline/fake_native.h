@@ -121,6 +121,7 @@ inline void OH_NativeWindow_DestroyNativeWindow(OHNativeWindow* w) {
 
 using OH_AudioData_Callback_Result = int;
 constexpr int AUDIOSTREAM_SUCCESS = 0, AUDIOSTREAM_TYPE_RENDERER = 0, AUDIOSTREAM_SAMPLE_S16LE = 0;
+constexpr int AUDIOSTREAM_USAGE_MOVIE = 10;
 constexpr int AUDIOSTREAM_ENCODING_TYPE_RAW = 0, AUDIO_DATA_CALLBACK_RESULT_VALID = 0, AUDIO_DATA_CALLBACK_RESULT_INVALID = -1;
 struct OH_AudioRenderer;
 using AudioWrite = int (*)(OH_AudioRenderer*, void*, void*, int32_t);
@@ -133,6 +134,7 @@ inline int OH_AudioStreamBuilder_SetChannelCount(OH_AudioStreamBuilder*, int) { 
 inline int OH_AudioStreamBuilder_SetSampleFormat(OH_AudioStreamBuilder*, int) { return 0; }
 inline int OH_AudioStreamBuilder_SetEncodingType(OH_AudioStreamBuilder*, int) { return 0; }
 inline int OH_AudioStreamBuilder_SetRendererWriteDataCallback(OH_AudioStreamBuilder* b, AudioWrite cb, void* u) { b->callback = cb; b->user = u; return 0; }
+inline int OH_AudioStreamBuilder_SetRendererInfo(OH_AudioStreamBuilder*, int) { return 0; }
 inline int OH_AudioStreamBuilder_GenerateRenderer(OH_AudioStreamBuilder* b, OH_AudioRenderer** r) { *r = new OH_AudioRenderer{b->callback, b->user}; return 0; }
 inline int OH_AudioRenderer_Start(OH_AudioRenderer*) { return 0; }
 inline int OH_AudioRenderer_SetVolume(OH_AudioRenderer*, float) { return 0; }
