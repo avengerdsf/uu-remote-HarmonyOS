@@ -1,1 +1,1 @@
-397a1af6a2a2a38816de943afe4e57e1bce0f32e47ed08362ea7c926f127a857  uu-remote-harmony-1.0.0-unsigned.hap
+e3fc596b8a2cd39e2942ba2f6de4ee06e5da023311115a0f1d4f46e38af4ca1b  uu-remote-harmony-1.0.0-unsigned.hap
