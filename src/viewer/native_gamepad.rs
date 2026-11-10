@@ -1,9 +1,11 @@
 //! Opt-in official UU gamepad JSON, recovered from Windows 4.45.0.4318.
 //! Evidence/RVAs and limits: docs/deckpad-native-gamepad.md. No port mapping or helper.
 use serde_json::{json,Value};
+use serde::Deserialize;
 use std::time::{Duration,Instant};
 
-#[derive(Clone,Copy,Debug,Default,PartialEq,Eq)]
+#[derive(Clone,Copy,Debug,Default,PartialEq,Eq,Deserialize)]
+#[serde(deny_unknown_fields)]
 pub struct State {pub buttons:u16,pub lx:i16,pub ly:i16,pub rx:i16,pub ry:i16,pub lt:u8,pub rt:u8}
 impl State {
     pub fn json(self)->Value{json!({"action":"gpd_update","index":0,"buttons":self.buttons,
@@ -21,13 +23,14 @@ fn trigger(v:i16)->u8{((i32::from(v).max(0)*255+16383)/32767) as u8}
 /// Local state machine: focus loss sends neutral then detach; re-entry requires release.
 /// The caller stops the session on any send failure rather than queueing old states.
 #[derive(Default)]
-struct Gate {connected:bool,armed:bool,last:Option<(State,Instant)>}
+pub(crate) struct Gate {connected:bool,armed:bool,last:Option<(State,Instant)>}
 impl Gate {
-    fn close(&mut self)->Vec<Value>{
+    pub(crate) fn active(&self)->bool{self.connected&&self.armed}
+    pub(crate) fn close(&mut self)->Vec<Value>{
         let out=if self.connected{vec![State::default().json(),disconnect()]}else{vec![]};
         *self=Self::default();out
     }
-    fn step(&mut self,state:Option<State>,active:bool,now:Instant)->Vec<Value>{
+    pub(crate) fn step(&mut self,state:Option<State>,active:bool,now:Instant)->Vec<Value>{
         let Some(state)=state.filter(|_|active) else{return self.close()};
         let mut out=Vec::new();
         if !self.connected{out.push(connect());out.push(State::default().json());self.connected=true;}

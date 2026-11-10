@@ -1,0 +1,11 @@
+{
+  "schemaVersion": "1.0.0",
+  "approved": false,
+  "status": "VISUAL_REVIEW_PENDING",
+  "approvedBy": null,
+  "approvedAt": null,
+  "nativeEnvironment": null,
+  "goldens": [],
+  "referenceImagesAreNotGoldens": true,
+  "automaticUpdateAllowed": false
+}

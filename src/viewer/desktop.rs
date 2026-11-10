@@ -138,7 +138,7 @@ fn pump_with_elapsed(desktop:&Desktop,decoder:&mut dyn Decoder,sink:&mut dyn Fra
     use std::time::Duration;
     fn unit(id:u32,key:bool)->AccessUnit {
         let mut data=vec![0,0,0,1,if key {0x65}else{0x41},0b1001_1000];
-        data.extend_from_slice(&id.to_le_bytes());AccessUnit{codec:Codec::H264,data}
+        data.extend_from_slice(&id.to_le_bytes());AccessUnit{codec:Codec::H264,timestamp:id,data}
     }
     fn picture(id:u32)->Frame {Frame{width:1,height:1,rgb:id.to_le_bytes()[..3].to_vec(),content:None}}
     #[derive(Default)]

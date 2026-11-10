@@ -1,0 +1,13 @@
+{
+  "modelVersion": "5.0.0",
+  "name": "uu-remote-harmony",
+  "version": "1.0.0",
+  "description": "UU Remote Linux HarmonyOS controller (unofficial, GPL-3.0-or-later)",
+  "main": "",
+  "author": "uu-remote-linux contributors",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {},
+  "devDependencies": {
+    "@ohos/hypium": "1.0.21"
+  }
+}

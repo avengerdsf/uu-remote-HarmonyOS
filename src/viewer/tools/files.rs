@@ -67,12 +67,16 @@ impl Files {
     }
     pub async fn mkdir(&self,path:&str)->Result<(),String>{let mut rx=self.rx.lock().await;self.canceled.store(false,Ordering::Release);let b=self.request(&mut rx,6,&nested(1,path.as_bytes()),5).await?;check(uint(&b,1))}
     fn report(&self,task:u64,transferred:u64,total:u64){let _=self.progress.try_send(Progress{task,transferred,total});}
+    pub fn allocate_task(&self)->u64{self.next.fetch_add(1,Ordering::Relaxed)}
     pub async fn upload(&self,local:impl AsRef<Path>,remote:&str)->Result<(),String>{
+        let task=self.allocate_task();
+        self.upload_task(local,remote,task).await
+    }
+    pub async fn upload_task(&self,local:impl AsRef<Path>,remote:&str,task:u64)->Result<(),String>{
         let mut rx=self.rx.lock().await;self.canceled.store(false,Ordering::Release);
         let mut file=tokio::fs::File::open(local).await.map_err(|_|"Cannot open upload file")?;
         let meta=file.metadata().await.map_err(|_|"Cannot stat upload file")?;if !meta.is_file(){return Err("Upload requires a regular file".into())}let size=meta.len();
         let (parent,name)=split_remote(remote).ok_or("Invalid remote file name")?;safe(name)?;
-        let task=self.next.fetch_add(1,Ordering::Relaxed);
         // GvPb_FileInfo {1 rel_path, 2 size, 3 modified_time (unix s)}; receive_request {.., 7 task_unique_id}.
         // The official Windows host rejects (code 2) a request without the modified time / unique id.
         let modified=meta.modified().ok().and_then(|t|t.duration_since(std::time::UNIX_EPOCH).ok()).map_or(0,|d|d.as_secs());
@@ -105,8 +109,12 @@ impl Files {
         result
     }
     pub async fn download(&self,remote:&str,local:impl AsRef<Path>)->Result<(),String>{
+        let task=self.allocate_task();
+        self.download_task(remote,local,task).await
+    }
+    pub async fn download_task(&self,remote:&str,local:impl AsRef<Path>,task:u64)->Result<(),String>{
         let local=local.as_ref();let mut rx=self.rx.lock().await;self.canceled.store(false,Ordering::Release);
-        let task=self.next.fetch_add(1,Ordering::Relaxed);let mut b=id(task,0);wire::bytes(2,remote.as_bytes(),&mut b);
+        let mut b=id(task,0);wire::bytes(2,remote.as_bytes(),&mut b);
         let mut accepted=false;let mut ended=false;
         let result=async {
         let r=self.request(&mut rx,2,&b,2).await?;check(uint(&r,2))?;accepted=true;

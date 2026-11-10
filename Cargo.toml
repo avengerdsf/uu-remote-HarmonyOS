@@ -19,8 +19,15 @@ name = "uuremote-viewer"
 path = "src/viewer_main.rs"
 required-features = ["native-viewer"]
 
+# Shared protocol core for the HarmonyOS app (linked as libuu_core.a).
+[lib]
+name = "uu_core"
+path = "src/lib.rs"
+crate-type = ["staticlib", "rlib"]
+
 [features]
 default = []
+harmony = []
 native-viewer = []
 viewer-ffmpeg = ["native-viewer", "dep:ffmpeg-next"]
 viewer-sdl = ["native-viewer", "dep:sdl2", "dep:ab_glyph", "dep:png"]
@@ -51,7 +58,6 @@ async-trait = "0.1"
 rand = "0.8"
 webrtc = "0.10"
 libc = "0.2"
-nix = { version = "0.29", features = ["term", "process", "fs", "ioctl", "signal"] }
 log = "0.4"
 qrcode = { version = "0.14", default-features = false }
 env_logger = "0.11"
@@ -61,6 +67,10 @@ x11rb = { version = "0.13", features = ["damage", "shm", "allow-unsafe-code"], o
 sdl2 = { version = "0.37", optional = true, features = ["use-pkgconfig"] }
 ab_glyph = { version = "0.2", optional = true }
 png = { version = "0.18", optional = true }
+
+[target.'cfg(not(target_env = "ohos"))'.dependencies]
+# Desktop host/viewer only; the HarmonyOS core does not link Unix terminal IPC.
+nix = { version = "0.29", features = ["term", "process", "fs", "ioctl", "signal"] }
 
 [dev-dependencies]
 tokio = { version = "1", features = ["test-util"] }
@@ -72,6 +82,9 @@ tokio-rustls = { version = "0.26.6", default-features = false, features = ["ring
 cc = "1.0"
 
 [patch.crates-io]
+# nix 0.26 does not compile for OHOS; 0.29 has explicit OHOS support and the
+# ifaces API used here is unchanged (vendor/webrtc-util/PATCHES.md).
+webrtc-util = { path = "vendor/webrtc-util" }
 # RTP rollover counter survives delayed NACK retransmissions (vendor/webrtc-srtp/PATCHES.md).
 webrtc-srtp = { path = "vendor/webrtc-srtp" }
 webrtc-dtls = { path = "vendor/webrtc-dtls" }

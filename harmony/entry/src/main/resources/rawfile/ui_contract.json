@@ -1,0 +1,687 @@
+{
+  "schemaVersion": "1.0.0",
+  "contractVersion": "1.0.0",
+  "updatedAt": "2026-11-07",
+  "sourceCommit": "b9586f226d1eb0ede921a95b9f83bf93e559d4c1",
+  "designStatus": "project_specification_for_implementation",
+  "nativeVisualApproval": "PENDING",
+  "referencesAre": "text_layout_specifications_and_inline_svg_not_native_golden_screenshots",
+  "scope": "PC Pad Phone shared ArkUI controller; optional host capabilities remain gated",
+  "units": {
+    "layout": "vp",
+    "text": "fp",
+    "runtimeGeometry": "record actual unit and coordinate system; ComponentUtils fields are px",
+    "fontScale": "observed value, unknown must remain null"
+  },
+  "tokens": {
+    "colors": {
+      "light": {
+        "background": "#F5F6F8",
+        "surface": "#FFFFFF",
+        "primaryText": "#182431",
+        "secondaryText": "#5F6B7A",
+        "primary": "#0A59F7",
+        "onPrimary": "#FFFFFF",
+        "border": "#D9DEE6",
+        "error": "#B3261E",
+        "success": "#1B6B3A",
+        "warning": "#795400",
+        "selection": "#E8F0FF"
+      },
+      "dark": {
+        "background": "#121418",
+        "surface": "#20242B",
+        "primaryText": "#F1F3F5",
+        "secondaryText": "#B4BBC4",
+        "primary": "#8AB4FF",
+        "onPrimary": "#10233F",
+        "border": "#454D59",
+        "error": "#FFB4AB",
+        "success": "#83D9A2",
+        "warning": "#F4C86A",
+        "selection": "#243D64"
+      }
+    },
+    "spacingVp": [
+      4,
+      8,
+      12,
+      16,
+      24,
+      32
+    ],
+    "fontFp": {
+      "pageTitle": 24,
+      "section": 20,
+      "body": 16,
+      "secondary": 14,
+      "label": 12
+    },
+    "lineHeightAtScale1Vp": {
+      "pageTitle": 32,
+      "body": 24,
+      "secondary": 20,
+      "label": 16
+    },
+    "radiusVp": {
+      "card": 16,
+      "panel": 20,
+      "dialog": 24
+    },
+    "minTapVp": 48,
+    "iconVisualVp": 24,
+    "buttonHeightAtScale1Vp": 48,
+    "buttonRadius": "half actual button height",
+    "radiusSource": "sys.float.corner_radius_level8; circular system action controls; native menu and tab shape"
+  },
+  "responsive": {
+    "compact": {
+      "rangeVp": [
+        0,
+        600
+      ],
+      "upperExclusive": true,
+      "nav": "bottom",
+      "paddingVp": 16
+    },
+    "medium": {
+      "rangeVp": [
+        600,
+        840
+      ],
+      "upperExclusive": true,
+      "nav": "bottom",
+      "paddingVp": 24
+    },
+    "expanded": {
+      "rangeVp": [
+        840,
+        null
+      ],
+      "nav": "bottom",
+      "paddingVp": 24
+    },
+    "contentMaxVp": 1200,
+    "gridGapVp": 16,
+    "cardMinWidthAtScale1Vp": 264,
+    "gridMaxColumns": 4,
+    "formMaxWidthVp": 480,
+    "loginCardMaxWidthVp": 400,
+    "qrOuterVp": 240,
+    "qrPaddingVp": 20,
+    "dialogMaxWidthVp": 480,
+    "dialogMinMarginVp": 16
+  },
+  "layoutFormulas": {
+    "W_H": "measured drawable content after applicable window decorations and avoid areas, no double inset",
+    "header": "max(compact?56:64,32*fontScale+16)",
+    "bottomNav": "max(64,24+4+16*fontScale+16)",
+    "bodyWidth": "min(W-2*padding,1200)",
+    "bodyX": "(W-bodyWidth)/2",
+    "searchHeight": "max(48,24*fontScale+24)",
+    "columns": "compact?1:clamp(floor((bodyWidth+16)/(264*min(fontScale,1.5)+16)),1,4)",
+    "cardWidth": "(bodyWidth-16*(columns-1))/columns",
+    "cardTopHeight": "max(48,42*fontScale)",
+    "cardStatusHeight": "max(20,20*fontScale)",
+    "buttonHeight": "max(48,24*fontScale+24)",
+    "cardMinHeight": "32+cardTopHeight+12+cardStatusHeight+16+buttonHeight",
+    "actualCardHeight": "at least cardMinHeight; may grow for actual typography; never clip or shrink fonts",
+    "gridY": "header+padding+searchHeight+16",
+    "sessionToolbar": "width=min(W-32,48*N+8*(N-1)), N=visible buttons (3 on phone/pad, 2 on pc); zoom capsule shares the same outer edges; height=64, bottom=16 within content",
+    "sessionSurface": "full window immersive video with floating safe-area header and controls; contain remote aspect ratio; reject overlay and letterbox hits"
+  },
+  "navigation": {
+    "routes": [
+      "devices",
+      "assist",
+      "settings"
+    ],
+    "labels": [
+      "设备",
+      "远程协助",
+      "设置"
+    ],
+    "hideOn": [
+      "login",
+      "session"
+    ],
+    "stateSharedAcrossBreakpoints": true,
+    "floatingTabs": {
+      "widthVp": 248,
+      "heightVp": 56,
+      "layout": "vertical icon and label",
+      "labelFp": 12,
+      "nativeComponent": "HdsTabs",
+      "extraBottomMarginVp": "max(0,16-navigationIndicatorBottomVp)",
+      "systemBottomAvoidance": "native; do not add it twice",
+      "materialType": "ADAPTIVE",
+      "materialLevel": "IMMERSIVE supported: ADAPTIVE; unsupported: SMOOTH",
+      "capabilityQuery": "hdsMaterial.getSystemMaterialTypes() on every device type"
+    }
+  },
+  "commonIds": [
+    "app.shell",
+    "app.title",
+    "app.bottomNav",
+    "app.nav.devices",
+    "app.nav.assist",
+    "app.nav.settings"
+  ],
+  "settings": {
+    "defaults": {
+      "themePreference": "system",
+      "defaultVideoProfile": "auto",
+      "touchMode": "trackpad",
+      "clipboardPolicy": "manual",
+      "keepScreenOn": false,
+      "smartReachEnabled": true,
+      "controlBarPosition": "center"
+    },
+    "items": [
+      {
+        "id": "settings.theme",
+        "options": [
+          "system",
+          "light",
+          "dark"
+        ],
+        "apply": "immediate_all_surfaces",
+        "persistent": true,
+        "group": "settings.general"
+      },
+      {
+        "id": "settings.video",
+        "options": "auto + core verified supported profiles",
+        "apply": "future_sessions",
+        "persistent": true
+      },
+      {
+        "id": "settings.input",
+        "options": [
+          "trackpad",
+          "direct"
+        ],
+        "apply": "current_local_input_mode_after_releaseAllInput",
+        "persistent": true,
+        "group": "settings.general"
+      },
+      {
+        "id": "settings.files",
+        "options": [
+          "manual"
+        ],
+        "apply": "explicit foreground send or receive",
+        "persistent": true,
+        "group": "settings.general"
+      },
+      {
+        "id": "settings.about",
+        "options": [
+          "version",
+          "license",
+          "unofficial_notice",
+          "logout_confirm"
+        ],
+        "persistent": false
+      },
+      {
+        "id": "settings.keepScreenOn",
+        "group": "settings.general",
+        "options": [
+          false,
+          true
+        ],
+        "apply": "next session; restore previous window setting on exit",
+        "persistent": true
+      },
+      {
+        "id": "settings.smartReach",
+        "group": "settings.general",
+        "section": "remote",
+        "options": [
+          false,
+          true
+        ],
+        "apply": "next session; native holdingHandChanged; unavailable or unknown centered",
+        "persistent": true
+      },
+      {
+        "id": "settings.controlBarPosition",
+        "group": "settings.general",
+        "section": "remote",
+        "options": [
+          "center",
+          "left",
+          "right"
+        ],
+        "visibleWhen": "smartReachEnabled == false",
+        "apply": "next session controls and restore action",
+        "persistent": true
+      }
+    ],
+    "navigationMode": "Auto",
+    "navBarWidth": "32%",
+    "navBarWidthRangeVp": [
+      224,
+      320
+    ],
+    "minContentWidthVp": 320,
+    "detailSections": {
+      "settings.general": [
+        "display",
+        "input",
+        "remote"
+      ],
+      "settings.video": [
+        "clarity",
+        "motion"
+      ],
+      "settings.about": [
+        "about"
+      ]
+    }
+  },
+  "pages": [
+    {
+      "id": "login.page",
+      "file": "LoginPage.ets",
+      "route": "login",
+      "tree": [
+        "root",
+        "scroll",
+        "login.card",
+        "login.qr",
+        "login.status",
+        "login.refresh",
+        "login.cancel"
+      ],
+      "states": [
+        "loadingQr",
+        "waitingScan",
+        "waitingConfirm",
+        "finalizing",
+        "expired",
+        "queryFailed",
+        "failed",
+        "authenticated"
+      ],
+      "events": {
+        "refresh": "loginStart",
+        "cancel": "loginCancel"
+      },
+      "rules": [
+        "auth success requires core credential confirmation",
+        "queryFailed is not expired",
+        "cancel polling on exit"
+      ]
+    },
+    {
+      "id": "devices.page",
+      "file": "DevicesPage.ets",
+      "route": "devices",
+      "tree": [
+        "app.shell",
+        "devices.refresh",
+        "devices.scroll",
+        "devices.search",
+        "devices.grid",
+        "device.{stableId}.card",
+        "device.{stableId}.connect",
+        "app.title",
+        "devices.search.open",
+        "devices.search.inline"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "ready",
+        "refreshFailed",
+        "authExpired"
+      ],
+      "events": {
+        "connect": "SessionService.connect(deviceId)",
+        "refresh": "listDevices",
+        "search": "localFilter"
+      },
+      "rules": [
+        "compact one column",
+        "offline cannot connect",
+        "no card-wide implicit connect",
+        "sort online then name then stableId"
+      ]
+    },
+    {
+      "id": "assist.page",
+      "file": "AssistancePage.ets",
+      "route": "assist",
+      "tree": [
+        "app.shell",
+        "assist.form",
+        "assist.connectId",
+        "assist.verifyCode",
+        "assist.connect",
+        "assist.error"
+      ],
+      "states": [
+        "empty",
+        "editable",
+        "submitting",
+        "failed"
+      ],
+      "events": {
+        "connect": "joinShare(connectId,verifyCode)"
+      },
+      "rules": [
+        "nonempty and no control characters",
+        "do not invent fixed code length",
+        "masked verification code",
+        "never log code"
+      ]
+    },
+    {
+      "id": "session.page",
+      "file": "SessionPage.ets",
+      "route": "session/:sessionId",
+      "tree": [
+        "session.surface",
+        "session.toolbar",
+        "session.inputMode",
+        "session.keyboard",
+        "session.quality",
+        "session.more",
+        "session.title",
+        "session.status",
+        "session.text.input",
+        "session.action.menu",
+        "session.header",
+        "session.back",
+        "session.controls",
+        "session.text.bar",
+        "session.quality.select",
+        "session.resolution.select",
+        "session.fps.select",
+        "session.color.select",
+        "session.menu.stack",
+        "session.more.back.1",
+        "session.more.back.2"
+      ],
+      "states": [
+        "connecting",
+        "negotiating",
+        "waitingFirstFrame",
+        "playing",
+        "reconnecting",
+        "viewOnly",
+        "ended"
+      ],
+      "events": {
+        "back": "openEndConfirm",
+        "endConfirmed": "disconnect",
+        "cancelConfirm": "closeDialog",
+        "toggleToolbar": "localOnly"
+      },
+      "rules": [
+        "no app navigation",
+        "surface contain",
+        "overlay hit-test before remote mapping",
+        "firstFrame event required",
+        "same session across responsive layout",
+        "toolbar manually hidden; no default auto-hide timer",
+        "all video choices use the same nested menu hierarchy and one-level back navigation",
+        "remote menu uses the selected system material with light text and official SVG icons; destructive actions use session_error",
+        "nested menu layers retain real native parent Menu content, scaled and noninteractive behind the active child; animated push and one-level pop",
+        "the root menu opens under the top More button on its current side; if the child would overflow below, move it upward within the window; native internal scrolling for excessive content"
+      ]
+    },
+    {
+      "id": "files.page",
+      "file": "FilesPage.ets",
+      "route": "session/:sessionId/files",
+      "tree": [
+        "files.path",
+        "files.up",
+        "files.refresh",
+        "files.list",
+        "files.upload",
+        "files.download",
+        "files.transfers",
+        "transfer.{transferId}.cancel",
+        "tool.title",
+        "files.mkdir"
+      ],
+      "states": [
+        "loading",
+        "empty",
+        "ready",
+        "transferring",
+        "conflict",
+        "failed"
+      ],
+      "events": {
+        "upload": "pickAuthorizedLocalFile then startTransfer",
+        "download": "pickAuthorizedDestination then startTransfer",
+        "cancelTransfer": "cancelTransfer(transferId)"
+      },
+      "rules": [
+        "local uri/fd differs from remote path",
+        "folder upload hidden unless implemented",
+        "destructive operations never auto replay"
+      ]
+    },
+    {
+      "id": "terminal.page",
+      "file": "TerminalPage.ets",
+      "route": "session/:sessionId/terminal",
+      "tree": [
+        "terminal.viewport",
+        "terminal.close",
+        "tool.title",
+        "terminal.new",
+        "terminal.sessions",
+        "terminal.sessionList"
+      ],
+      "states": [
+        "connecting",
+        "ready",
+        "disconnected",
+        "failed"
+      ],
+      "events": {
+        "input": "remoteTerminalWrite",
+        "resize": "remoteTerminalResize"
+      },
+      "rules": [
+        "remote shell only",
+        "local keyboard focus",
+        "Unicode width support"
+      ]
+    },
+    {
+      "id": "portmap.page",
+      "file": "PortMapPage.ets",
+      "route": "session/:sessionId/portmap",
+      "tree": [
+        "portmap.listenPort",
+        "portmap.targetHost",
+        "portmap.targetPort",
+        "portmap.allowLan",
+        "portmap.start",
+        "portmap.stop",
+        "portmap.error",
+        "tool.title",
+        "portmap.rules"
+      ],
+      "states": [
+        "editing",
+        "starting",
+        "running",
+        "stopped",
+        "portConflict",
+        "backgroundRestricted",
+        "failed"
+      ],
+      "events": {
+        "start": "startPortMap(rule)",
+        "stop": "stopPortMap(ruleId)"
+      },
+      "rules": [
+        "requires remote portmap capability and local backend",
+        "single current rule",
+        "listen 127.0.0.1 by default",
+        "0.0.0.0 only after explicit allowLan",
+        "local port integer 1024..65535",
+        "target port integer 1..65535",
+        "ports initially empty",
+        "targetHost defaults 127.0.0.1",
+        "no automatic restart from background restriction"
+      ]
+    },
+    {
+      "id": "settings.page",
+      "file": "SettingsPage.ets",
+      "route": "settings/:section?",
+      "tree": [
+        "app.shell",
+        "settings.groups",
+        "settings.theme",
+        "settings.video",
+        "settings.input",
+        "settings.files",
+        "settings.about",
+        "settings.title",
+        "settings.detail",
+        "settings.detail.title",
+        "settings.detail.scroll",
+        "settings.resolution",
+        "settings.about.version",
+        "settings.about.license",
+        "settings.about.unofficial",
+        "settings.logout",
+        "settings.general",
+        "settings.keepScreenOn"
+      ],
+      "states": [
+        "ready",
+        "subpage",
+        "logoutConfirm"
+      ],
+      "events": {
+        "theme": "setTheme",
+        "logout": "confirm then logout"
+      },
+      "rules": [
+        "same state through breakpoints",
+        "compact stack and expanded in-place detail",
+        "no duplicated settings view model"
+      ]
+    },
+    {
+      "id": "host.page",
+      "file": "HostPage.ets",
+      "route": "host",
+      "tree": [
+        "host.header",
+        "host.status",
+        "host.capture",
+        "host.control",
+        "host.stop"
+      ],
+      "states": [
+        "unsupported",
+        "waitingConsent",
+        "sharing",
+        "controlled",
+        "revoked"
+      ],
+      "events": {
+        "capture": "requestCaptureConsent",
+        "control": "requestSupportedInputConsent",
+        "stop": "stopHost"
+      },
+      "rules": [
+        "capability-driven",
+        "do not expose PC-only injection on phone/tablet",
+        "capture permission differs from input permission"
+      ]
+    }
+  ],
+  "stateInvariants": [
+    "no second SessionService",
+    "firstFrame event required for video-ready",
+    "re-layout preserves sessionId and generation",
+    "resourceEpoch may change independently",
+    "viewOnly blocks service-level input",
+    "IME composition consumed keys remain local",
+    "releaseAllInput on focus loss",
+    "no fake success for sent but unacknowledged command"
+  ],
+  "measurement": {
+    "idSelector": "ON.id(string), API9+",
+    "uniqueIdRequired": true,
+    "uitestCalls": "sequential await only",
+    "geometryPreferred": "UIContext.getComponentUtils().getRectangleById after layout, API10+",
+    "conversion": "bound UIContext conversions API12+; record window and display",
+    "epsilonVp": "max(1,1/vp2px1)",
+    "minTapCheck": "actual interaction node or response region plus edge click",
+    "collectorsCannotReadExpectedRects": true
+  },
+  "verification": {
+    "environments": [
+      "SOURCE_ONLY",
+      "PREVIEW",
+      "COMPONENT_HOST",
+      "DEVICE_APP"
+    ],
+    "results": [
+      "PASS",
+      "FAIL",
+      "NOT_RUN",
+      "BLOCKED"
+    ],
+    "visualStatus": "VISUAL_REVIEW_PENDING until approved native evidence",
+    "noMissingEvidencePass": true,
+    "noZeroTestsPass": true,
+    "noSelfApprovedBaseline": true,
+    "noAutomaticBaselineOverwrite": true,
+    "themeContrast": {
+      "normalTextMin": 4.5,
+      "essentialNonTextMin": 3.0
+    },
+    "pixelRegressionInitialPolicy": {
+      "perChannelDifferenceAbove": 16,
+      "maxChangedRatio": 0.005,
+      "sameEnvironmentOnly": true,
+      "baselineMustBeApproved": true
+    },
+    "allowedDynamicMasks": [
+      "qrPayload",
+      "liveVideo",
+      "cursor",
+      "elapsedTime",
+      "networkMetrics"
+    ],
+    "neverMask": [
+      "navigation",
+      "buttons",
+      "icons",
+      "staticText",
+      "dialogs"
+    ],
+    "systemAndMediaRequire": "DEVICE_APP"
+  },
+  "notImplementedByThisSpecification": [
+    "ArkUI app",
+    "Hypium test suite",
+    "UiProbe collector",
+    "native screenshots",
+    "real service connectivity",
+    "device UI acceptance results"
+  ],
+  "scrollbars": {
+    "component": "native ScrollBar",
+    "state": "Auto",
+    "edgeGapVp": 0,
+    "terminal": "xterm native auto visibility; viewport right padding 0"
+  },
+  "layoutAuthority": "HdsNavigation, HdsTabs and native window layout; formula rectangles in ui_cases are static reference calculations, not native screenshot approvals"
+}

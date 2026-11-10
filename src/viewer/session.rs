@@ -29,7 +29,7 @@ impl Session {
                 result.get("app_control_id").map(|v|v.as_str()==Some(app.as_str())),result.get("ice_id").map(|v|v.as_str()==Some(ice.as_str())));
             if result.get("app_control_id").is_some_and(|v|v.as_str()!=Some(app.as_str())) {return Err("Control acknowledgement belongs to another session".into())}
             // Observed live: the cloud assigns the session ice_id in this ack rather than echoing ours.
-            let ice=result.get("ice_id").and_then(Value::as_str).filter(|s|!s.is_empty()&&s.len()<=128).map(str::to_owned).unwrap_or(ice);
+            let ice=result.get("ice_id").and_then(Value::as_str).filter(|s|!s.is_empty()&&s.len()<=128).map(str::to_owned).ok_or("Control acknowledgement missing ICE route")?;
             let remote=result.get("client_id").and_then(Value::as_str).filter(|s|!s.is_empty()).ok_or("Control acknowledgement missing peer route")?;
             let config=rtc::configuration(&result)?;
             let(tx,rx)=mpsc::channel(256);
@@ -58,9 +58,10 @@ impl Session {
                     event.get(1).and_then(|b|b.get("type").or_else(||b.get("data").and_then(|d|d.get("type")))).and_then(Value::as_str).unwrap_or("-"));
                 match event.get(0).and_then(Value::as_str) {
                     Some("soac")=>if let Some(body)=event.get(1) {self.peer.receive(body).await?},
-                    Some("released"|"left"|"leave")=> {
-                        // An event for another peer must not tear down this session.
-                        if self.peer.matches_route(event.get(1).unwrap_or(&Value::Null)) {return Err("Remote session released".into())}
+                    Some("released"|"left"|"leave"|"publisher_disconnect")=> {
+                        // Only routed notifications are filtered; namespace releases end this socket's session.
+                        if matches!(event.get(0).and_then(Value::as_str),Some("leave"|"publisher_disconnect"))
+                            || self.peer.matches_route(event.get(1).unwrap_or(&Value::Null)) {self.signal.released();return Err("Remote session released".into())}
                     }
                     _=>{},
                 }

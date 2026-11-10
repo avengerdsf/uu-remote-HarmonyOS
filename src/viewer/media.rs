@@ -10,12 +10,12 @@ impl Codec {
     }
     pub fn demuxer(self)->&'static str {match self {Self::H264=>"h264",Self::H265=>"hevc"}}
 }
-pub struct AccessUnit {pub codec:Codec,pub data:Vec<u8>}
+pub struct AccessUnit {pub codec:Codec,pub timestamp:u32,pub data:Vec<u8>}
 const MAX_AU: usize = 8 * 1024 * 1024;
 #[derive(Clone)]
 pub struct Packet { pub seq: u16, pub timestamp: u32, pub marker: bool, pub payload: Vec<u8> }
 #[derive(Default)]
-pub struct Output { pub units: Vec<Vec<u8>>, pub pli: bool }
+pub struct Output { pub units: Vec<AccessUnit>, pub pli: bool }
 pub struct Receiver {
     codec: Codec,
     next: Option<u16>, pending: Vec<Packet>, timestamp: Option<u32>,
@@ -56,6 +56,9 @@ impl Receiver {
     fn skip_gap(&mut self, out: &mut Output) {
         let next = self.next.unwrap();
         self.next = self.pending.iter().min_by_key(|p| p.seq.wrapping_sub(next)).map(|p| p.seq);
+        // A gap may contain the first slice of the next timestamp. Its tail
+        // cannot be proved complete; discard it through that AU's boundary.
+        self.timestamp = self.pending.iter().find(|p| Some(p.seq) == self.next).map(|p| p.timestamp);
         self.au.clear(); self.fragment = None; self.damaged = true; out.pli = true;
         self.drain(out);
     }
@@ -70,7 +73,7 @@ impl Receiver {
             if !self.damaged && self.nal(&p.payload).is_err() { self.damaged = true; self.au.clear(); self.fragment = None; out.pli = true; }
             if p.marker {
                 if self.fragment.is_some() { out.pli = true; self.damaged = true; }
-                if !self.damaged && !self.au.is_empty() { out.units.push(std::mem::take(&mut self.au)); }
+                if !self.damaged && !self.au.is_empty() { out.units.push(AccessUnit{codec:self.codec,timestamp:p.timestamp,data:std::mem::take(&mut self.au)}); }
                 self.au.clear(); self.fragment = None;
             }
         }
@@ -157,14 +160,14 @@ mod tests {
     #[test] fn single_stap_and_boundary() {
         let mut r=Receiver::default();
         assert!(r.push(p(1,1,false,&[0x67,1])).units.is_empty());
-        assert_eq!(r.push(p(2,1,true,&[24,0,2,0x68,2,0,2,0x65,3])).units[0],vec![0,0,0,1,0x67,1,0,0,0,1,0x68,2,0,0,0,1,0x65,3]);
+        assert_eq!(r.push(p(2,1,true,&[24,0,2,0x68,2,0,2,0x65,3])).units[0].data,vec![0,0,0,1,0x67,1,0,0,0,1,0x68,2,0,0,0,1,0x65,3]);
         r.push(p(3,2,false,&[0x61,1]));
         let o=r.push(p(4,3,true,&[0x65,4])); assert!(o.pli); assert_eq!(o.units.len(),1);
     }
     #[test] fn fu_reorder_wrap_duplicate_and_loss() {
         let mut r=Receiver::default(); r.push(p(65535,1,false,&[0x7c,0x85,1]));
         assert!(r.push(p(1,1,true,&[0x7c,0x45,3])).units.is_empty());
-        let o=r.push(p(0,1,false,&[0x7c,5,2])); assert_eq!(o.units[0],vec![0,0,0,1,0x65,1,2,3]);
+        let o=r.push(p(0,1,false,&[0x7c,5,2])); assert_eq!(o.units[0].data,vec![0,0,0,1,0x65,1,2,3]);
         assert!(r.push(p(0,1,false,&[0x61])).units.is_empty());
         r.push(p(2,2,false,&[0x7c,0x85,1]));r.push(p(4,2,true,&[0x7c,0x45,3]));
         let o=r.expire_at(Instant::now()+Duration::from_millis(50));assert!(o.pli);assert!(o.units.is_empty());
@@ -182,6 +185,29 @@ mod tests {
         }
         let q=Latest::new(2);assert!(!q.push(1));q.push(2);assert!(q.push(3));assert_eq!(q.pop(),Some(2));assert_eq!(q.pop(),Some(3));
     }
+    #[test] fn timestamps_follow_units_through_reorder_and_expiry() {
+        let mut r=Receiver::default();r.push(p(1,90000,true,&[0x65]));
+        r.push(p(3,270000,true,&[0x65]));
+        let o=r.push(p(2,180000,true,&[0x65]));
+        assert_eq!(o.units.iter().map(|u|u.timestamp).collect::<Vec<_>>(),vec![180000,270000]);
+        r.push(p(5,450000,true,&[0x65]));
+        let o=r.expire_at(Instant::now()+Duration::from_millis(50));
+        assert!(o.pli);assert!(o.units.is_empty());
+        assert_eq!(r.push(p(6,540000,true,&[0x65])).units[0].timestamp,540000);
+    }
+    #[test] fn sequence_gap_never_submits_the_tail_of_a_new_access_unit() {
+        for (codec, slice) in [(Codec::H264, vec![0x61,1]), (Codec::H265, vec![2,1,1])] {
+            for seq in [10u16, 65534] {
+                let mut r=Receiver::new(codec);
+                assert_eq!(r.push(p(seq,100,true,&slice)).units.len(),1);
+                r.push(p(seq.wrapping_add(2),200,true,&slice));
+                let lost=r.expire_at(Instant::now()+Duration::from_millis(50));
+                assert!(lost.pli);
+                assert!(lost.units.is_empty(), "missing first slice must discard the remaining AU");
+                assert_eq!(r.push(p(seq.wrapping_add(3),300,true,&slice)).units.len(),1);
+            }
+        }
+    }
 }
 
 #[cfg(test)] mod hevc_tests {
@@ -198,14 +224,14 @@ mod tests {
             // Start at the first sequence, then reorder adjacent packets across wraparound.
             for i in (1..n.saturating_sub(1)).step_by(2){packets.swap(i,i+1);}
             let mut r=Receiver::new(Codec::H265);let mut units=Vec::new();
-            for p in packets {let o=r.push(p);assert!(!o.pli);units.extend(o.units);}
+            for p in packets {let o=r.push(p);assert!(!o.pli);units.extend(o.units.into_iter().map(|unit|unit.data));}
             assert_eq!(units,vec![au]);
         }
     }
     #[test] fn aggregation_and_malformed_packets(){
         let ap=vec![96,1,0,3,64,1,9,0,3,38,1,7];
         let mut r=Receiver::new(Codec::H265);
-        assert_eq!(r.push(packet(0,0,true,ap)).units,vec![vec![0,0,0,1,64,1,9,0,0,0,1,38,1,7]]);
+        assert_eq!(r.push(packet(0,0,true,ap)).units[0].data,vec![0,0,0,1,64,1,9,0,0,0,1,38,1,7]);
         for payload in [vec![],vec![64],vec![128,1],vec![64,0],vec![96,1],vec![96,1,0,4,38,1,7],
             vec![96,1,0,2,96,1],vec![98,1,0xc1,3],vec![98,1,0x41,3],vec![98,1,0xb0,3],vec![100,1,7]] {
             let o=Receiver::new(Codec::H265).push(packet(1,1,true,payload));assert!(o.pli);assert!(o.units.is_empty());

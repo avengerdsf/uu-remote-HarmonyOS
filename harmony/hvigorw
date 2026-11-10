@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# Thin project wrapper for DevEco Studio 5.x / Command Line Tools.
+# Set DEVECO_HOME to the DevEco Studio install directory (the one containing
+# tools/hvigor/bin/hvigorw) or COMMAND_LINE_TOOLS to the CLI tools root.
+set -euo pipefail
+for root in "${DEVECO_HOME:-}" "/Applications/DevEco-Studio.app/Contents" \
+            "${COMMAND_LINE_TOOLS:-}" "${HOME}/Library/Huawei/DevEcoStudio"; do
+  if [[ -n "$root" && -x "$root/tools/hvigor/bin/hvigorw" ]]; then
+    exec "$root/tools/hvigor/bin/hvigorw" "$@"
+  fi
+  if [[ -n "$root" && -x "$root/hvigor/bin/hvigorw" ]]; then
+    exec "$root/hvigor/bin/hvigorw" "$@"
+  fi
+done
+echo "hvigorw not found. Set DEVECO_HOME to the DevEco Studio install directory" >&2
+echo "(the one containing tools/hvigor/bin/hvigorw) or install Command Line Tools." >&2
+exit 2

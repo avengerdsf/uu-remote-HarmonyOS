@@ -1,0 +1,17 @@
+{
+  "sources": [
+    {
+      "file": "scripts/ui/huawei/ohos_ic_public_device_matebook.svg",
+      "sha256": "841f4bd0f20c3ae353927850a3572e3e15015b116e09f10244fcf09a0e327e2a"
+    },
+    {
+      "file": "scripts/ui/huawei/arrow_up_left.svg",
+      "sha256": "0716d38ce5d73cbd4f8713853e138a04673c72fc220c6ab38ea037542c9ab70a"
+    }
+  ],
+  "geometry": "Original Huawei SVG outlines, uniformly scaled; opaque solid background and transparent foreground; system layered mask",
+  "size": 1024,
+  "iconSha256": "54388a41648ee1659df27baedb0337784f0faca8d6001de7e26cd76f624a122b",
+  "foregroundSha256": "8ab125e79bcfd3f951312518ce88a98de7ce4f9b0d74f51835f3c7e760a6a5ad",
+  "backgroundSha256": "2763c56743ed9b9752337f422f1090b644f70d22c9b17d5d8366fe73a4262a9f"
+}

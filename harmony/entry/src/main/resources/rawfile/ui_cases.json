@@ -1,0 +1,1547 @@
+{
+  "schemaVersion": "1.0.0",
+  "contractVersion": "1.0.0",
+  "allNotExecuted": true,
+  "cases": [
+    {
+      "id": "DEV-C360-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        360,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "compact",
+        "columns": 1,
+        "devices.search": [
+          16.0,
+          72,
+          328,
+          48
+        ],
+        "device.demo-win-01.card": [
+          16.0,
+          136,
+          328.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          32.0,
+          248,
+          296.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          360,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-C360-D",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        360,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "dark",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "compact",
+        "columns": 1,
+        "devices.search": [
+          16.0,
+          72,
+          328,
+          48
+        ],
+        "device.demo-win-01.card": [
+          16.0,
+          136,
+          328.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          32.0,
+          248,
+          296.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          360,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-C390-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        390,
+        844
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "compact",
+        "columns": 1,
+        "devices.search": [
+          16.0,
+          72,
+          358,
+          48
+        ],
+        "device.demo-win-01.card": [
+          16.0,
+          136,
+          358.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          32.0,
+          248,
+          326.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          780,
+          390,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-C599-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        599,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "compact",
+        "columns": 1,
+        "devices.search": [
+          16.0,
+          72,
+          567,
+          48
+        ],
+        "device.demo-win-01.card": [
+          16.0,
+          136,
+          567.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          32.0,
+          248,
+          535.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          599,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-M600-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        600,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "medium",
+        "columns": 2,
+        "devices.search": [
+          24.0,
+          88,
+          552,
+          48
+        ],
+        "device.demo-win-01.card": [
+          24.0,
+          152,
+          268.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          40.0,
+          264,
+          236.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          600,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-M800-D",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        800,
+        1100
+      ],
+      "fontScale": 1,
+      "theme": "dark",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "medium",
+        "columns": 2,
+        "devices.search": [
+          24.0,
+          88,
+          752,
+          48
+        ],
+        "device.demo-win-01.card": [
+          24.0,
+          152,
+          368.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          40.0,
+          264,
+          336.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          1036,
+          800,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-M839-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        839,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "medium",
+        "columns": 2,
+        "devices.search": [
+          24.0,
+          88,
+          791,
+          48
+        ],
+        "device.demo-win-01.card": [
+          24.0,
+          152,
+          387.5,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          40.0,
+          264,
+          355.5,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          839,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-E840-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        840,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "expanded",
+        "columns": 2,
+        "devices.search": [
+          24.0,
+          88,
+          792,
+          48
+        ],
+        "device.demo-win-01.card": [
+          24.0,
+          152,
+          388.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          40.0,
+          264,
+          356.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          840,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-E1280-L",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        1280,
+        800
+      ],
+      "fontScale": 1,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "expanded",
+        "columns": 4,
+        "devices.search": [
+          40.0,
+          88,
+          1200,
+          48
+        ],
+        "device.demo-win-01.card": [
+          40.0,
+          152,
+          288.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          56.0,
+          264,
+          256.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          736,
+          1280,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-E1440-D",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        1440,
+        900
+      ],
+      "fontScale": 1,
+      "theme": "dark",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "expanded",
+        "columns": 4,
+        "devices.search": [
+          120.0,
+          88,
+          1200,
+          48
+        ],
+        "device.demo-win-01.card": [
+          120.0,
+          152,
+          288.0,
+          176
+        ],
+        "device.demo-win-01.connect": [
+          136.0,
+          264,
+          256.0,
+          48
+        ],
+        "app.bottomNav": [
+          0,
+          836,
+          1440,
+          64
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ]
+    },
+    {
+      "id": "DEV-C320-F2",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        320,
+        800
+      ],
+      "fontScale": 2,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "compact",
+        "columns": 1,
+        "devices.search": [
+          16.0,
+          96,
+          288,
+          72
+        ],
+        "device.demo-win-01.card": [
+          16.0,
+          184,
+          288.0,
+          256
+        ],
+        "device.demo-win-01.connect": [
+          32.0,
+          352,
+          256.0,
+          72
+        ],
+        "app.bottomNav": [
+          0,
+          724,
+          320,
+          76
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ],
+      "geometryComparison": {
+        "xAndWidth": "exact within epsilon",
+        "searchAndFirstCardY": "flow relationship using actual preceding heights",
+        "height": "minimum; may grow for measured text",
+        "connectY": "actual card bottom minus 16 minus actual button height",
+        "noClip": "separate requirement, not inferred from text value"
+      }
+    },
+    {
+      "id": "DEV-M800-F2",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        800,
+        1100
+      ],
+      "fontScale": 2,
+      "theme": "dark",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "medium",
+        "columns": 1,
+        "devices.search": [
+          24.0,
+          104,
+          752,
+          72
+        ],
+        "device.demo-win-01.card": [
+          24.0,
+          192,
+          752.0,
+          256
+        ],
+        "device.demo-win-01.connect": [
+          40.0,
+          360,
+          720.0,
+          72
+        ],
+        "app.bottomNav": [
+          0,
+          1024,
+          800,
+          76
+        ],
+        "app.nav.assist": {
+          "widthVp": 64,
+          "minHeightVp": 108
+        }
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping",
+        "assist rail label wraps to two lines within 64vp",
+        "actual label bounds contained in navigation item",
+        "no clipped label; if glyph evidence missing leave visual item pending",
+        "minimum interactive hit area 48vp"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ],
+      "geometryComparison": {
+        "xAndWidth": "exact within epsilon",
+        "searchAndFirstCardY": "flow relationship using actual preceding heights",
+        "height": "minimum; may grow for measured text",
+        "connectY": "actual card bottom minus 16 minus actual button height",
+        "noClip": "separate requirement, not inferred from text value"
+      }
+    },
+    {
+      "id": "DEV-C390-F13",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        390,
+        844
+      ],
+      "fontScale": 1.3,
+      "theme": "light",
+      "fixture": "devices",
+      "actions": [
+        "open devices",
+        "wait observed layout stability"
+      ],
+      "expected": {
+        "mode": "compact",
+        "columns": 1,
+        "devices.search": [
+          16.0,
+          73.6,
+          358,
+          55.2
+        ],
+        "device.demo-win-01.card": [
+          16.0,
+          144.8,
+          358.0,
+          195.8
+        ],
+        "device.demo-win-01.connect": [
+          32.0,
+          269.4,
+          326.0,
+          55.2
+        ],
+        "app.bottomNav": [
+          0,
+          779.2,
+          390,
+          64.8
+        ]
+      },
+      "assertions": [
+        "IDs unique",
+        "expected geometry within epsilon; actual card height may grow",
+        "offline connect disabled",
+        "min actual tap region 48vp",
+        "correct theme and asset mapping"
+      ],
+      "evidence": [
+        "raw component tree",
+        "runtime rectangles",
+        "test context"
+      ],
+      "geometryComparison": {
+        "xAndWidth": "exact within epsilon",
+        "searchAndFirstCardY": "flow relationship using actual preceding heights",
+        "height": "minimum; may grow for measured text",
+        "connectY": "actual card bottom minus 16 minus actual button height",
+        "noClip": "separate requirement, not inferred from text value"
+      }
+    },
+    {
+      "id": "LOGIN-EXPIRED",
+      "page": "login.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "login.expired",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "login.expired"
+        },
+        {
+          "type": "waitState",
+          "state": "expired"
+        },
+        {
+          "type": "click",
+          "target": "login.refresh",
+          "expectServiceEvent": "loginStart",
+          "expectCallCount": 1
+        }
+      ],
+      "assertions": [
+        "text 二维码已过期",
+        "refresh enabled",
+        "old QR no longer active"
+      ],
+      "evidence": [
+        "node text and state",
+        "service events"
+      ]
+    },
+    {
+      "id": "LOGIN-QUERY-FAILED",
+      "page": "login.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "login.queryFailed",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "login.queryFailed"
+        },
+        {
+          "type": "waitState",
+          "state": "queryFailed"
+        },
+        {
+          "type": "assertText",
+          "target": "login.status",
+          "text": "暂时无法查询扫码状态"
+        }
+      ],
+      "assertions": [
+        "query failure text",
+        "must not label expired"
+      ],
+      "evidence": [
+        "node text and state",
+        "service events"
+      ]
+    },
+    {
+      "id": "LOGIN-SCANNED",
+      "page": "login.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "login.waitingConfirm",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "login.waitingConfirm"
+        },
+        {
+          "type": "waitState",
+          "state": "waitingConfirm"
+        },
+        {
+          "type": "assertServiceState",
+          "authenticated": false
+        }
+      ],
+      "assertions": [
+        "text 请在手机上确认",
+        "no premature authenticated state"
+      ],
+      "evidence": [
+        "node text and state",
+        "service events"
+      ]
+    },
+    {
+      "id": "LOGIN-CANCEL",
+      "page": "login.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "login.waitingScan",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "login.waitingScan"
+        },
+        {
+          "type": "waitState",
+          "state": "waitingScan"
+        },
+        {
+          "type": "click",
+          "target": "login.cancel",
+          "expectServiceEvent": "loginCancel",
+          "expectCallCount": 1
+        },
+        {
+          "type": "injectStaleLoginCallback",
+          "expectNavigationChange": false
+        }
+      ],
+      "assertions": [
+        "leave page cancels polling",
+        "no stale callback navigation"
+      ],
+      "evidence": [
+        "node text and state",
+        "service events"
+      ]
+    },
+    {
+      "id": "DEV-EMPTY",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "lists.empty",
+      "viewportVp": [
+        360,
+        800
+      ],
+      "actions": [
+        "open devices"
+      ],
+      "assertions": [
+        "empty text visible",
+        "refresh accessible"
+      ],
+      "evidence": [
+        "runtime tree",
+        "inspector attributes",
+        "screenshot or manual text clipping review"
+      ]
+    },
+    {
+      "id": "DEV-ERROR",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "lists.error",
+      "viewportVp": [
+        360,
+        800
+      ],
+      "actions": [
+        {
+          "type": "click",
+          "target": "devices.refresh"
+        },
+        {
+          "type": "injectServiceError",
+          "fixture": "lists.error"
+        },
+        {
+          "type": "assertDeviceIdsUnchanged",
+          "fixture": "devices"
+        }
+      ],
+      "assertions": [
+        "old list retained if valid",
+        "error distinct from empty"
+      ],
+      "evidence": [
+        "runtime tree",
+        "inspector attributes",
+        "screenshot or manual text clipping review"
+      ],
+      "initialState": {
+        "deviceListFixture": "devices",
+        "state": "ready"
+      }
+    },
+    {
+      "id": "DEV-LONG-NAME",
+      "page": "devices.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "longDeviceName",
+      "viewportVp": [
+        360,
+        800
+      ],
+      "actions": [
+        "open devices"
+      ],
+      "assertions": [
+        "single-line ellipsis policy",
+        "full accessible name",
+        "connect button remains usable"
+      ],
+      "evidence": [
+        "runtime tree",
+        "inspector attributes",
+        "screenshot or manual text clipping review"
+      ]
+    },
+    {
+      "id": "ASSIST-INVALID",
+      "page": "assist.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "submit invalid input"
+      ],
+      "assertions": [
+        "no joinShare call",
+        "field error visible"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "ASSIST-DOUBLE-SUBMIT",
+      "page": "assist.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "valid submit twice quickly"
+      ],
+      "assertions": [
+        "one joinShare request",
+        "button disabled while submitting",
+        "no verification code logged"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SESSION-FIRST-FRAME",
+      "page": "session.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "negotiate without firstFrame",
+        "emit firstFrame"
+      ],
+      "assertions": [
+        "waitingFirstFrame before event",
+        "playing only after event"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SESSION-RESIZE",
+      "page": "session.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "1280x800 to 599x800 to 840x800"
+      ],
+      "assertions": [
+        "same sessionId and generation",
+        "connect count remains 1",
+        "resourceEpoch may change",
+        "target and inputMode preserved"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SESSION-OVERLAY-HIT",
+      "page": "session.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "tap toolbar",
+        "tap letterbox"
+      ],
+      "assertions": [
+        "no remote pointer event for overlay or black bars"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SESSION-VIEW-ONLY",
+      "page": "session.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "enable viewOnly",
+        "send pointer and keyboard"
+      ],
+      "assertions": [
+        "viewOnly label visible",
+        "service-level input count remains 0"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SESSION-CANCEL-END",
+      "page": "session.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "back",
+        "cancel confirmation"
+      ],
+      "assertions": [
+        "disconnect count 0",
+        "focus returns",
+        "session continues"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SESSION-END",
+      "page": "session.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "back",
+        "confirm end"
+      ],
+      "assertions": [
+        "disconnect count 1",
+        "audio stopped",
+        "input released"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SETTINGS-CROSS-WIDTH",
+      "page": "settings.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "open input subpage",
+        "wide to compact to wide"
+      ],
+      "assertions": [
+        "subpage preserved",
+        "back path valid",
+        "no duplicate settings state"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "THEME-ALL-SURFACES",
+      "page": "settings.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "toggle dark",
+        "open menu and dialog and files"
+      ],
+      "assertions": [
+        "dark resources throughout",
+        "contrast checks covered",
+        "no un-themed overlays"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "FILES-CANCEL",
+      "page": "files.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "files.activeTransfer"
+        },
+        {
+          "type": "click",
+          "target": "transfer.demo-transfer-001.cancel"
+        },
+        {
+          "type": "assertServiceEvent",
+          "name": "cancelTransfer",
+          "id": "demo-transfer-001",
+          "count": 1
+        }
+      ],
+      "assertions": [
+        "cancelled state",
+        "no continued mock writes"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ],
+      "fixture": "files.activeTransfer"
+    },
+    {
+      "id": "DEVICE-IME",
+      "page": "session.page",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "open keyboard",
+        "compose Chinese",
+        "choose candidate",
+        "commit"
+      ],
+      "assertions": [
+        "composition keys not sent",
+        "final Unicode sent once",
+        "local controls above keyboard"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "DEVICE-FOCUS",
+      "page": "session.page",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "hold Ctrl",
+        "switch focus"
+      ],
+      "assertions": [
+        "releaseAllInput called",
+        "held-state empty"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "DEVICE-MENU",
+      "page": "devices.page",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "right-click PC item",
+        "long-press touch item"
+      ],
+      "assertions": [
+        "same semantic actions",
+        "keyboard access",
+        "focus restoration"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "DEVICE-PERMISSIONS",
+      "page": "host.page",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "deny then grant then revoke supported permission"
+      ],
+      "assertions": [
+        "accurate state per capability",
+        "stop on revoke",
+        "no unsupported injection on tablet/phone"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "DEVICE-SURFACE",
+      "page": "session.page",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "decode known actual stream",
+        "rotate/recreate surface"
+      ],
+      "assertions": [
+        "container geometry correct",
+        "valid frame evidence",
+        "no stale resource use",
+        "display confirmed separately from decode count"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "DEVICE-WINDOW-INSETS",
+      "page": "devices.page",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "change window mode",
+        "show keyboard where applicable"
+      ],
+      "assertions": [
+        "foreground controls reachable",
+        "actual window/density/avoid areas recorded"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "VISUAL-FIRST-APPROVAL",
+      "page": "all",
+      "requiredEnvironment": "DEVICE_APP",
+      "initialStatus": "NOT_RUN",
+      "actions": [
+        "capture native scenes",
+        "independent visual review"
+      ],
+      "assertions": [
+        "reviewer approves explicitly before golden baseline",
+        "unapproved status remains VISUAL_REVIEW_PENDING"
+      ],
+      "evidence": [
+        "raw test output",
+        "runtime context",
+        "actual nodes or service events",
+        "native screenshot when relevant"
+      ]
+    },
+    {
+      "id": "SETTINGS-W840",
+      "page": "settings.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        840,
+        800
+      ],
+      "fontScale": 1,
+      "actions": [
+        {
+          "type": "open",
+          "route": "settings/theme"
+        }
+      ],
+      "expected": {
+        "bodyWidthVp": 792,
+        "groupWidthVp": 176,
+        "gapVp": 16,
+        "detailWidthVp": 600
+      },
+      "assertions": [
+        "theme selected",
+        "same preference state",
+        "no second fullscreen settings page"
+      ],
+      "evidence": [
+        "runtime rectangles",
+        "route state"
+      ]
+    },
+    {
+      "id": "SETTINGS-W1280",
+      "page": "settings.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "viewportVp": [
+        1280,
+        800
+      ],
+      "fontScale": 1,
+      "actions": [
+        {
+          "type": "open",
+          "route": "settings/theme"
+        }
+      ],
+      "expected": {
+        "bodyWidthVp": 1200,
+        "groupWidthVp": 176,
+        "gapVp": 16,
+        "detailWidthVp": 1008
+      },
+      "assertions": [
+        "theme selected",
+        "same preference state",
+        "no second fullscreen settings page"
+      ],
+      "evidence": [
+        "runtime rectangles",
+        "route state"
+      ]
+    },
+    {
+      "id": "PORTMAP-START",
+      "page": "portmap.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "portmap.validRule",
+      "targetDeviceFixture": "devices[1]",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "portmap.validRule"
+        },
+        {
+          "type": "click",
+          "target": "portmap.start"
+        }
+      ],
+      "assertions": [
+        "one startPortMap call",
+        "running only after backend bound event",
+        "actual bound address displayed"
+      ],
+      "evidence": [
+        "nodes",
+        "service events"
+      ]
+    },
+    {
+      "id": "PORTMAP-STOP",
+      "page": "portmap.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "portmap.validRule",
+      "targetDeviceFixture": "devices[1]",
+      "actions": [
+        {
+          "type": "injectState",
+          "state": "running",
+          "fixture": "portmap.validRule"
+        },
+        {
+          "type": "click",
+          "target": "portmap.stop"
+        }
+      ],
+      "assertions": [
+        "one stopPortMap call",
+        "stopped only after backend confirmation"
+      ],
+      "evidence": [
+        "nodes",
+        "service events"
+      ]
+    },
+    {
+      "id": "PORTMAP-CONFLICT",
+      "page": "portmap.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "portmap.validRule",
+      "targetDeviceFixture": "devices[1]",
+      "actions": [
+        {
+          "type": "loadFixture",
+          "path": "portmap.validRule"
+        },
+        {
+          "type": "click",
+          "target": "portmap.start"
+        },
+        {
+          "type": "injectServiceError",
+          "fixture": "portmap.portConflict"
+        }
+      ],
+      "assertions": [
+        "error visible",
+        "inputs retained",
+        "not running"
+      ],
+      "evidence": [
+        "nodes",
+        "service events"
+      ]
+    },
+    {
+      "id": "PORTMAP-BACKGROUND",
+      "page": "portmap.page",
+      "requiredEnvironment": "COMPONENT_HOST",
+      "initialStatus": "NOT_RUN",
+      "fixture": "portmap.validRule",
+      "targetDeviceFixture": "devices[1]",
+      "actions": [
+        {
+          "type": "injectState",
+          "state": "running",
+          "fixture": "portmap.validRule"
+        },
+        {
+          "type": "injectState",
+          "fixture": "portmap.backgroundRestricted"
+        }
+      ],
+      "assertions": [
+        "paused status explicit",
+        "no fake active tunnel",
+        "manual restart available on foreground"
+      ],
+      "evidence": [
+        "nodes",
+        "service events"
+      ]
+    }
+  ]
+}

@@ -32,6 +32,10 @@ impl Send for Rtc {
         dc.send(&bytes::Bytes::from(data)).await.map_err(|_|"Tool data channel send failed")?;Ok(())
     }
 }
+/// Builds a transport over the peer's CONTROL/FILE/BINARY channels.
+pub fn channel_transport(channels:Vec<Arc<webrtc::data_channel::RTCDataChannel>>)->Transport {
+    Transport(Arc::new(Rtc(channels)))
+}
 pub fn attach(peer:&super::rtc::Peer)->Result<(Transport,mpsc::Receiver<Packet>),String> {
     let(tx,rx)=mpsc::channel(256);
     let mut slot=peer.tools.lock().unwrap();

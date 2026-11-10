@@ -37,9 +37,14 @@ impl PortMap {
     pub async fn closed(&self){let mut alive=self.alive.clone();let _=alive.changed().await;}
     pub fn status(&self)->Vec<Status>{self.rules.lock().unwrap().values().map(|r|r.status.lock().unwrap().clone()).collect()}
     pub async fn add_rule(&self,name:impl Into<String>,local_port:u16,target_host:impl Into<String>,target_port:u16)->Result<u64,String>{
+        self.add_rule_on(std::net::Ipv4Addr::LOCALHOST,name,local_port,target_host,target_port).await
+    }
+    /// `bind` is loopback for the desktop UI; HarmonyOS may pass the wildcard
+    /// address only when the user explicitly enabled LAN access.
+    pub async fn add_rule_on(&self,bind:std::net::Ipv4Addr,name:impl Into<String>,local_port:u16,target_host:impl Into<String>,target_port:u16)->Result<u64,String>{
         if self.worker.is_finished(){return Err("Forwarding transport closed".into())}
         let host=target_host.into();if host.trim().is_empty() || target_port==0 {return Err("Invalid forwarding target".into())}
-        let listener=TcpListener::bind((std::net::Ipv4Addr::LOCALHOST,local_port)).await.map_err(|_|"Cannot bind local forwarding port")?;
+        let listener=TcpListener::bind((bind,local_port)).await.map_err(|_|"Cannot bind local forwarding port")?;
         let port=listener.local_addr().map_err(|_|"Cannot inspect local forwarding port")?.port();
         let id=self.next.fetch_add(1,Ordering::Relaxed);let status=Arc::new(Mutex::new(Status{id,name:name.into(),local_port:port,streams:0,failures:0}));
         let(stopper,mut stop)=watch::channel(false);let st=status.clone();let io=self.io.clone();let routes=self.routes.clone();let next=self.next.clone();let session=self.session;

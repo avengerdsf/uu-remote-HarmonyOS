@@ -221,10 +221,28 @@ pub fn capture_setting(seq:u64,fields:&[(u32,u64)])->Vec<u8>{
     let mut rpc=Vec::new();bytes(1,&header,&mut rpc);bytes(2,&setting,&mut rpc);
     envelope(seq,21,&rpc)
 }
-/// Message 3 SimpleAction {1 action, 5 value} as the official 安全 menu sends it.
-pub fn simple_action(seq:u64,action:u64,value:Option<u64>)->Vec<u8>{
-    let mut body=Vec::new();int(1,action,&mut body);if let Some(v)=value {int(5,v,&mut body);}
+/// RPC case 5 CursorSettingReqeust, field 1 requests the real cursor in the video.
+pub fn request_cursor_capture(seq: u64) -> Vec<u8> {
+    let mut header = Vec::new(); int(1, seq, &mut header);
+    let mut setting = Vec::new(); int(1, 1, &mut setting);
+    let mut rpc = Vec::new(); bytes(1, &header, &mut rpc); bytes(5, &setting, &mut rpc);
+    envelope(seq, 21, &rpc)
+}
+/// Message 3 SimpleAction {1 action, 2 args, 5 value} as the official 安全 menu sends it.
+pub fn simple_action_with_args(seq:u64,action:u64,args:&str,value:Option<u64>)->Vec<u8>{
+    let mut body=Vec::new();int(1,action,&mut body);
+    if !args.is_empty(){bytes(2,args.as_bytes(),&mut body);}
+    if let Some(v)=value {int(5,v,&mut body);}
     envelope(seq,3,&body)
+}
+pub fn simple_action(seq:u64,action:u64,value:Option<u64>)->Vec<u8>{
+    simple_action_with_args(seq,action,"",value)
+}
+/// Official viewers stop desktop capture before leaving: action 7 with
+/// `{"screen_id":-1}`. SimpleActions are business messages; the host only routes
+/// CONTROL SimpleActions to its ECHO handler, so this must travel on TEXT.
+pub fn stop_capture(seq:u64)->Vec<u8>{
+    simple_action_with_args(seq,7,r#"{"screen_id":-1}"#,None)
 }
 /// Message 18 is an encoder capability LIST, not the chosen codec; RTP's negotiated PT is authoritative.
 /// Message 25 reports actual encoded chroma, which may fall back to 4:2:0.
@@ -276,5 +294,16 @@ pub fn media_control(data:&[u8])->(Option<u32>,Option<u32>){
         assert_eq!(media_control(&msg),(Some(3),Some(1)));
         assert_eq!(media_control(&envelope(2,25,&[24,3])),(None,Some(3)));
         assert_eq!(media_control(&[255]),(None,None));
+    }
+    #[test] fn stop_capture_is_message_3_action_7_with_all_screens_arg(){
+        let message=stop_capture(42);
+        let fields=decode_wire(&message).unwrap();
+        let body=fields.iter().find_map(|f|match (f.number,&f.value){(3,WireValue::Bytes(b))=>Some(*b),_=>None}).unwrap();
+        let body=decode_wire(body).unwrap();
+        let action=body.iter().find_map(|f|match (f.number,&f.value){(1,WireValue::Varint(v))=>Some(*v),_=>None}).unwrap();
+        assert_eq!(action,7);
+        let args=body.iter().find_map(|f|match (f.number,&f.value){(2,WireValue::Bytes(b))=>Some(b),_=>None}).unwrap();
+        assert_eq!(std::str::from_utf8(args).unwrap(),r#"{"screen_id":-1}"#);
+        assert!(!body.iter().any(|f|f.number==5));
     }
 }

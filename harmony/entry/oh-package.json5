@@ -1,0 +1,10 @@
+{
+  "modelVersion": "5.0.0",
+  "name": "entry",
+  "version": "1.0.0",
+  "description": "UU Remote HarmonyOS entry module",
+  "main": "",
+  "author": "uu-remote-linux contributors",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {}
+}

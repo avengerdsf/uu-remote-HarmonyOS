@@ -2,7 +2,33 @@ target/
 *.log
 .DS_Store
 
+# HarmonyOS/DevEco generated state and signing material.
+harmony/local.properties
+harmony/.hvigor/
+harmony/.idea/
+harmony/.clangd
+harmony/.clang-tidy
+harmony/oh_modules/
+harmony/entry/oh_modules/
+harmony/build/
+harmony/entry/build/
+harmony/entry/.preview/
+harmony/entry/.cxx/
+harmony/entry/src/main/cpp/build/
+harmony/entry/src/main/cpp/libs/*.a
+harmony/entry/src/main/cpp/libs/*/*.a
+harmony/signing/
+*.p12
+*.p7b
+*.cer
+*.jks
+*.keystore
+
 # Internal QA records and handoffs stay private (kept under the parent project analysis/)
 /docs/validation/
 /docs/ACTIVE_HANDOFF.md
 /contrib/tests/
+/tmp/
+/tests/ui/evidence/
+/tests/ui/ui_report.json
+/tests/ui/ui_report.summary.md

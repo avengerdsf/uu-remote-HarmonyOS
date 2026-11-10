@@ -3,6 +3,26 @@ use crate::protocol::{decode_wire,WireValue};
 use std::sync::{Arc,Mutex};
 const MAX_SIDE:u32=512;
 const MAX_PNG:usize=1024*1024;
+
+/// Windows host CONTROL notification when it cannot composite a real cursor into video.
+pub fn capture_unavailable(data: &[u8]) -> bool {
+    data.len() <= 512 && data.iter().copied().find(|byte| !byte.is_ascii_whitespace()) == Some(b'{') &&
+        serde_json::from_slice::<serde_json::Value>(data).is_ok_and(|value|
+            value.get("action").and_then(serde_json::Value::as_str) == Some("controlled_mouse_capture_unavailable"))
+}
+
+pub fn capture_response(data: &[u8], request: u64) -> Option<bool> {
+    let response = blob(data, 22)?;
+    let header = blob(response, 1)?;
+    if super::tools::uint(header, 1) != request { return None; }
+    let setting = blob(response, 2)?;
+    let accepted = decode_wire(setting).ok()?.iter().all(|field| match (field.number, &field.value) {
+        (1, WireValue::Bytes(error)) => decode_wire(error).is_ok() && super::tools::uint(error, 1) == 0,
+        (1, _) => false,
+        _ => true,
+    });
+    Some(accepted)
+}
 #[derive(Clone,Debug,PartialEq)]
 pub struct Shape {pub width:u32,pub height:u32,pub hot_x:u32,pub hot_y:u32,pub scale_x:f64,pub scale_y:f64,pub png:Vec<u8>}
 fn blob(data:&[u8],field:u32)->Option<&[u8]>{decode_wire(data).ok()?.into_iter().find_map(|f|match(f.number,f.value){(n,WireValue::Bytes(v))if n==field=>Some(v),_=>None})}
@@ -118,6 +138,34 @@ mod display {
 #[cfg(feature="viewer-sdl")] pub use display::Display;
 #[cfg(test)] mod tests {
     use super::*;
+    use crate::viewer::{tools::uint, wire};
+
+    #[test]
+    fn cursor_capture_requires_matching_success_and_recognizes_fallback() {
+        let request = wire::request_cursor_capture(19);
+        let rpc = blob(&request, 21).unwrap();
+        assert_eq!(uint(blob(rpc, 1).unwrap(), 1), 19);
+        assert_eq!(uint(blob(rpc, 5).unwrap(), 1), 1);
+        let response = |errors: &[u64]| {
+            let mut header = Vec::new(); wire::int(1, 19, &mut header);
+            let mut setting = Vec::new();
+            for code in errors {
+                let mut error = Vec::new();
+                if *code != 0 { wire::int(1, *code, &mut error); }
+                wire::bytes(1, &error, &mut setting);
+            }
+            let mut rpc = Vec::new(); wire::bytes(1, &header, &mut rpc); wire::bytes(2, &setting, &mut rpc);
+            wire::envelope(200, 22, &rpc)
+        };
+        assert_eq!(capture_response(&response(&[]), 19), Some(true));
+        assert_eq!(capture_response(&response(&[0]), 19), Some(true));
+        assert_eq!(capture_response(&response(&[0, (-2_i64) as u64]), 19), Some(false));
+        assert_eq!(capture_response(&response(&[]), 20), None);
+        assert_eq!(capture_response(&request, 19), None);
+        assert!(capture_unavailable(br#"{"action":"controlled_mouse_capture_unavailable"}"#));
+        assert!(!capture_unavailable(br#"{"action":"unknown","message":"controlled_mouse_capture_unavailable"}"#));
+    }
+
     fn packet(w:u64,hot:u64,scale:f64,png:&[u8])->Vec<u8>{
         let mut shape=Vec::new();super::super::wire::int(3,w,&mut shape);super::super::wire::int(4,w,&mut shape);super::super::wire::int(1,hot,&mut shape);
         super::super::wire::bytes(5,png,&mut shape);shape.push(7<<3|1);shape.extend_from_slice(&scale.to_le_bytes());

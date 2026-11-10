@@ -1,0 +1,4 @@
+# Copy to harmony/local.properties (git-ignored) when building outside DevEco.
+# DevEco Studio normally writes this file during project sync.
+sdk.dir=C\:\\Program Files\\Huawei\\DevEco Studio\\sdk
+# nodejs.dir=C\:\\Program Files\\Huawei\\DevEco Studio\\tools\\node

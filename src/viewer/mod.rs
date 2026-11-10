@@ -25,6 +25,7 @@ pub mod native_gamepad;
 pub mod native_rumble;
 
 pub mod clipboard;
+mod clipboard_state;
 pub mod cursor;
 pub mod power;
 pub mod secure_input;

@@ -1,0 +1,3 @@
+# Obfuscation rules (release)
+# Keep N-API entry names stable.
+-keep-global-name

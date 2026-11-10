@@ -1,0 +1,11 @@
+{
+  "string": [
+    { "name": "module_desc", "value": "UU Remote HarmonyOS controller" },
+    { "name": "EntryAbility_desc", "value": "UU Remote main ability" },
+    { "name": "EntryAbility_label", "value": "UU 远程" },
+    { "name": "app_name", "value": "UU 远程" },
+    { "name": "nav_devices", "value": "设备" },
+    { "name": "nav_assist", "value": "远程协助" },
+    { "name": "nav_settings", "value": "设置" }
+  ]
+}

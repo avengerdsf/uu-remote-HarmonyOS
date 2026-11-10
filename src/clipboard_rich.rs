@@ -1,5 +1,5 @@
 //! Text-only desktop clipboard format negotiation. No file formats are offered.
-use crate::clipboard::MAX_TEXT;
+use crate::clipboard_protocol::MAX_TEXT;
 use crate::clipboard_protocol::{nested,varint};
 use crate::protocol::{decode_wire,WireValue};
 use std::collections::BTreeMap;

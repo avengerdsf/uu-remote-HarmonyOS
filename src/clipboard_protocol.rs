@@ -1,7 +1,7 @@
 //! Official GvPb_Message field 17 / ClipboardChange (UInt32, String, Bool).
 //! Source-bound field/type evidence is retained in control/CLIPBOARD.md.
 use crate::protocol::{decode_wire, WireValue};
-use crate::clipboard::MAX_TEXT;
+pub const MAX_TEXT: usize = 30 * 1024;
 use std::time::{Duration, Instant};
 
 #[derive(Default)]

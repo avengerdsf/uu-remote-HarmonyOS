@@ -1,0 +1,172 @@
+{
+  "schemaVersion": "1.0.0",
+  "kind": "synthetic_test_data_only",
+  "locale": "zh-CN",
+  "devices": [
+    {
+      "id": "demo-win-01",
+      "name": "办公室 Windows",
+      "platform": "Windows",
+      "online": true,
+      "statusText": "在线 · 可连接",
+      "capabilities": [
+        "desktop",
+        "files",
+        "terminal",
+        "textInput"
+      ],
+      "connectLabel": "连接"
+    },
+    {
+      "id": "demo-linux-01",
+      "name": "实验室 Linux",
+      "platform": "Linux",
+      "online": true,
+      "statusText": "在线 · 可连接",
+      "capabilities": [
+        "desktop",
+        "files",
+        "terminal",
+        "portmap"
+      ],
+      "connectLabel": "连接"
+    },
+    {
+      "id": "demo-mac-01",
+      "name": "家中的 Mac",
+      "platform": "macOS",
+      "online": false,
+      "statusText": "离线",
+      "capabilities": [
+        "desktop"
+      ],
+      "connectLabel": "设备离线"
+    }
+  ],
+  "longDeviceName": "实验室用于远程开发和调试的工作站名称测试ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  "lists": {
+    "empty": [],
+    "error": {
+      "code": "TEST_NETWORK_UNAVAILABLE",
+      "message": "刷新失败，请检查网络连接"
+    }
+  },
+  "login": {
+    "qrPayload": "TEST-ONLY-NOT-A-LOGIN-CREDENTIAL",
+    "states": [
+      "loadingQr",
+      "waitingScan",
+      "waitingConfirm",
+      "finalizing",
+      "expired",
+      "queryFailed",
+      "failed",
+      "authenticated"
+    ],
+    "expired": {
+      "state": "expired",
+      "statusText": "二维码已过期",
+      "qrPayload": null,
+      "pollingActive": false,
+      "authenticated": false
+    },
+    "queryFailed": {
+      "state": "queryFailed",
+      "statusText": "暂时无法查询扫码状态",
+      "qrPayload": "TEST-ONLY-NOT-A-LOGIN-CREDENTIAL",
+      "pollingActive": false,
+      "authenticated": false
+    },
+    "waitingConfirm": {
+      "state": "waitingConfirm",
+      "statusText": "请在手机上确认",
+      "qrPayload": "TEST-ONLY-NOT-A-LOGIN-CREDENTIAL",
+      "pollingActive": true,
+      "authenticated": false
+    },
+    "waitingScan": {
+      "state": "waitingScan",
+      "statusText": "请扫码登录",
+      "qrPayload": "TEST-ONLY-NOT-A-LOGIN-CREDENTIAL",
+      "pollingActive": true,
+      "authenticated": false
+    }
+  },
+  "files": {
+    "activeTransfer": {
+      "id": "demo-transfer-001",
+      "name": "demo.txt",
+      "state": "transferring",
+      "totalBytes": 1024,
+      "transferredBytes": 256,
+      "localUri": "test-only://demo.txt",
+      "remotePath": "/tmp/demo.txt",
+      "isMock": true
+    }
+  },
+  "portmap": {
+    "validRule": {
+      "id": "demo-rule-001",
+      "listenAddress": "127.0.0.1",
+      "listenPort": 8800,
+      "targetHost": "127.0.0.1",
+      "targetPort": 22,
+      "allowLan": false
+    },
+    "portConflict": {
+      "code": "TEST_ADDRESS_IN_USE",
+      "message": "本地端口已被占用"
+    },
+    "backgroundRestricted": {
+      "state": "backgroundRestricted",
+      "message": "已暂停，返回前台后可重新启动"
+    }
+  },
+  "assist": {
+    "valid": {
+      "connectId": "demo-partner-id",
+      "verifyCode": "demo-only-code"
+    },
+    "invalid": [
+      {
+        "connectId": "",
+        "verifyCode": ""
+      },
+      {
+        "connectId": "a\nb",
+        "verifyCode": "code"
+      }
+    ]
+  },
+  "session": {
+    "sessionId": "demo-session-001",
+    "generation": 1,
+    "resourceEpoch": 1,
+    "targetId": "demo-win-01",
+    "videoWidth": 1920,
+    "videoHeight": 1080,
+    "inputMode": "trackpad",
+    "viewOnly": false,
+    "mediaProof": false
+  },
+  "capabilities": {
+    "pcInputUnavailable": {
+      "capture": true,
+      "inputInjection": false
+    },
+    "phoneViewOnlyHost": {
+      "capture": true,
+      "inputInjection": false
+    },
+    "hostUnavailable": {
+      "capture": false,
+      "inputInjection": false
+    }
+  },
+  "disallowedInRelease": [
+    "fixtures loader",
+    "MockSessionService",
+    "UiProbe debug routes",
+    "test-only live connections"
+  ]
+}

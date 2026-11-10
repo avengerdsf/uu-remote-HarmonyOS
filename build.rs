@@ -21,6 +21,14 @@ fn main() {
     println!("cargo:rerun-if-env-changed=UU_NO_GTK");
     println!("cargo:rustc-check-cfg=cfg(uu_gtk)");
 
+    // HarmonyOS uses the linux base target but must never enter the Linux desktop
+    // branch (X11, GTK, PAM, SDL, PulseAudio). UU_CORE_ONLY skips the C engines
+    // when checking the shared library on a Linux workstation.
+    let target_env = std::env::var("CARGO_CFG_TARGET_ENV").unwrap_or_default();
+    if target_env == "ohos" || std::env::var_os("UU_CORE_ONLY").is_some() {
+        return;
+    }
+
     let target_os = std::env::var("CARGO_CFG_TARGET_OS").unwrap_or_default();
     if target_os == "linux" {
         if std::env::var_os("CARGO_FEATURE_KMS").is_some() {

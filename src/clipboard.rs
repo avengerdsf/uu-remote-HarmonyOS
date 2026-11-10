@@ -2,7 +2,7 @@
 use tokio::sync::watch;
 
 // Keep worst-case UTF-16 plus protobuf framing below webrtc0.10's65535-byte reader.
-pub const MAX_TEXT: usize = 30 * 1024;
+pub use crate::clipboard_protocol::MAX_TEXT;
 
 pub struct ClipboardBridge {
     pub incoming: watch::Sender<Option<String>>,

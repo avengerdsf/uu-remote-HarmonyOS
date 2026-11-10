@@ -79,11 +79,23 @@ impl Input {
         };
         changed.then(||json!({"action":if down{"kbd_press"}else{"kbd_release"},"key":vk}))
     }
+    /// Official mobile clients' `kbd_click`; no state is held between press and release.
+    pub fn key_click(&mut self,scan:i32)->Option<Value> {
+        if self.view_only {return None}
+        let vk=if self.mac{mac_keycode(scan)}else{windows_vk(scan)}?;
+        if self.keys.contains_key(&scan)||self.keys.values().any(|v|*v==vk) {return None}
+        Some(json!({"action":"kbd_click","key":vk}))
+    }
     pub fn button(&mut self,button:i32,down:bool)->Option<Value> {
         if self.view_only {return None}
         if !matches!(button,1|2|4) {return None}
         let changed=if down{self.buttons.insert(button)}else{self.buttons.remove(&button)};
         changed.then(||json!({"action":if down{"mouse_press"}else{"mouse_release"},"button":button}))
+    }
+    /// Official mobile clients' `mouse_click`; a button already held is not clicked twice.
+    pub fn click(&mut self,button:i32)->Option<Value> {
+        if self.view_only||!matches!(button,1|2|4)||self.buttons.contains(&button) {return None}
+        Some(json!({"action":"mouse_click","button":button}))
     }
     /// SDL wheel units are notches; the wire uses the Mac convention (one notch = 120).
     /// Positive y is wheel-up, matching the host's `mouse_scroll` (button 4).
@@ -157,6 +169,16 @@ assert!(i.release_all().is_empty());
         let mut i=Input::default();assert!(i.key(40,true).is_some());assert!(i.key(88,true).is_none());
         assert!(i.key(40,false).is_none());assert_eq!(i.key(88,false).unwrap(),json!({"action":"kbd_release","key":13}));
         assert!(i.button(3,true).is_none());assert_eq!(i.button(4,true).unwrap()["button"],4);
+    }
+    #[test] fn click_actions_do_not_duplicate_held_input() {
+        let mut i=Input::default();
+        assert_eq!(i.key_click(4).unwrap(),json!({"action":"kbd_click","key":65}));
+        assert_eq!(i.click(2).unwrap(),json!({"action":"mouse_click","button":2}));
+        i.key(4,true);i.button(2,true);
+        assert!(i.key_click(4).is_none());assert!(i.click(2).is_none());
+        assert!(i.click(3).is_none());
+        let mut watch=Input::new(true);watch.set_mac(true);
+        assert!(watch.key_click(4).is_none());assert!(watch.click(1).is_none());
     }
     #[test] fn letterbox() {
         let v=Viewport::fit((1000,1000),(1920,1080));

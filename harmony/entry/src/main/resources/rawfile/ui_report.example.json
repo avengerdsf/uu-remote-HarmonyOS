@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "1.0.0",
+  "exampleOnly": true,
+  "status": "NOT_RUN",
+  "runId": null,
+  "build": {
+    "sourceCommit": null,
+    "hapSha256": null,
+    "testCodeCommit": null
+  },
+  "environment": {
+    "type": null,
+    "device": null,
+    "systemVersion": null,
+    "apiVersion": null,
+    "uitestVersion": null,
+    "windowId": null,
+    "displayId": null,
+    "windowRectPx": null,
+    "drawableRectPx": null,
+    "contentOriginPx": null,
+    "vp2px1": null,
+    "fontSizeScale": null,
+    "theme": null,
+    "locale": null,
+    "avoidAreas": null
+  },
+  "contract": {
+    "version": "1.0.0",
+    "sha256": "3a90236ba35492a0753f63b139482009c977558c8a116a272fcdc6b3e5881c17"
+  },
+  "observations": [
+    {
+      "id": "device.demo-win-01.connect",
+      "source": null,
+      "unit": null,
+      "coordinateSpace": null,
+      "matchCount": null,
+      "bounds": null,
+      "text": null,
+      "enabled": null,
+      "evidenceRefs": []
+    }
+  ],
+  "checks": [
+    {
+      "id": "connect-min-target",
+      "expectedMinVp": 48,
+      "actual": null,
+      "result": "NOT_RUN",
+      "reason": "No runtime evidence collected",
+      "evidenceRefs": []
+    }
+  ],
+  "summary": {
+    "planned": 44,
+    "passed": 0,
+    "failed": 0,
+    "notRun": 44,
+    "blocked": 0
+  },
+  "visualStatus": "VISUAL_REVIEW_PENDING"
+}

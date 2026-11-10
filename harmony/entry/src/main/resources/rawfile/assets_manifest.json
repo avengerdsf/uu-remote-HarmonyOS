@@ -1,0 +1,1258 @@
+{
+  "schemaVersion": "1.2.0",
+  "style": "official_huawei_exported_svg",
+  "source": "Huawei HarmonyOS Symbol SVG export and DevEco SDK system SVG resources",
+  "origin": "Official SVG paths, proportions and masks preserved; theme colours only",
+  "icons": {
+    "devices": {
+      "light": {
+        "file": "assets/devices_light.svg",
+        "sha256": "cfcee3a5cf079c2fba500502ae7c2f7f3f6890c0e96408ccde64d016e6278060",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_matebook.svg",
+          "sha256": "841f4bd0f20c3ae353927850a3572e3e15015b116e09f10244fcf09a0e327e2a",
+          "name": "ohos_ic_public_device_matebook",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/devices_dark.svg",
+        "sha256": "927de33ff1f9775739cb6e1e0796c0dd36c29a63b7eb1e97239b39a09140bc70",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_matebook.svg",
+          "sha256": "841f4bd0f20c3ae353927850a3572e3e15015b116e09f10244fcf09a0e327e2a",
+          "name": "ohos_ic_public_device_matebook",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/devices_selected_light.svg",
+        "sha256": "f6b5d1821b6a7570b7450a7850d94c41ef60db65ce19b2b6b76b173de67de43f",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_matebook.svg",
+          "sha256": "841f4bd0f20c3ae353927850a3572e3e15015b116e09f10244fcf09a0e327e2a",
+          "name": "ohos_ic_public_device_matebook",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/devices_selected_dark.svg",
+        "sha256": "469a44207203b7efe70659b9025f1cd0d407abd2132e77819b01f4131390b967",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_matebook.svg",
+          "sha256": "841f4bd0f20c3ae353927850a3572e3e15015b116e09f10244fcf09a0e327e2a",
+          "name": "ohos_ic_public_device_matebook",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "assist": {
+      "light": {
+        "file": "assets/assist_light.svg",
+        "sha256": "a3217e74de2951c44b1e91d95d37750863e89e340b7f5f5955ff8a9914b52f2e",
+        "source": {
+          "file": "scripts/ui/huawei/hand_tap.svg",
+          "sha256": "f316a85cade382d7a85260b21b4d0b58e107b790cc50098bb0af25ffaa483621",
+          "name": "hand_tap",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/assist_dark.svg",
+        "sha256": "d3d0bd1b03ac4d54277774b75224de8632c6c7e0ab934420fbdb245c3b6a7a56",
+        "source": {
+          "file": "scripts/ui/huawei/hand_tap.svg",
+          "sha256": "f316a85cade382d7a85260b21b4d0b58e107b790cc50098bb0af25ffaa483621",
+          "name": "hand_tap",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/assist_selected_light.svg",
+        "sha256": "5f346fc0b7510749ec15ebd34ce908d3690d1b3ebffcf8b4e2239d3a7e48addc",
+        "source": {
+          "file": "scripts/ui/huawei/hand_tap.svg",
+          "sha256": "f316a85cade382d7a85260b21b4d0b58e107b790cc50098bb0af25ffaa483621",
+          "name": "hand_tap",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/assist_selected_dark.svg",
+        "sha256": "b9b50c85028c98fd53d8216e3aab2ecee7cc059a406d6a3d4c45ee110a4a790e",
+        "source": {
+          "file": "scripts/ui/huawei/hand_tap.svg",
+          "sha256": "f316a85cade382d7a85260b21b4d0b58e107b790cc50098bb0af25ffaa483621",
+          "name": "hand_tap",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "settings": {
+      "light": {
+        "file": "assets/settings_light.svg",
+        "sha256": "b23a5e6a358a0b334a96f84c7cc9c65e8e06bbed92684d028eb1a1a92e011c43",
+        "source": {
+          "file": "scripts/ui/huawei/gearshape.svg",
+          "sha256": "aafa2f47c2e3faa3ae5acd9ebd2f3882a7c7a9f02de01cfda86a3bafde66484c",
+          "name": "gearshape",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/settings_dark.svg",
+        "sha256": "ba38ba39a64dac33c85e7588dc6ac5bdac590adf5a8e2d813f8333cae22755db",
+        "source": {
+          "file": "scripts/ui/huawei/gearshape.svg",
+          "sha256": "aafa2f47c2e3faa3ae5acd9ebd2f3882a7c7a9f02de01cfda86a3bafde66484c",
+          "name": "gearshape",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/settings_selected_light.svg",
+        "sha256": "aaa1bed93efea8962d3d41ef592fc4b8ca1dcd855f7096bc59ae1d9745e45b44",
+        "source": {
+          "file": "scripts/ui/huawei/gearshape.svg",
+          "sha256": "aafa2f47c2e3faa3ae5acd9ebd2f3882a7c7a9f02de01cfda86a3bafde66484c",
+          "name": "gearshape",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/settings_selected_dark.svg",
+        "sha256": "bf2a162f239c5b87f6ba35cc5be53ed5615518a0425118e0adfead1fbd37517e",
+        "source": {
+          "file": "scripts/ui/huawei/gearshape.svg",
+          "sha256": "aafa2f47c2e3faa3ae5acd9ebd2f3882a7c7a9f02de01cfda86a3bafde66484c",
+          "name": "gearshape",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "refresh": {
+      "light": {
+        "file": "assets/refresh_light.svg",
+        "sha256": "8f667414bca4c98dc6b65d5e1fad343577a54a5493bce9dd61f0f3621925901c",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_clockwise.svg",
+          "sha256": "15246fd12ab39fbf3fea99df28c6ce7623ba573eccb0bf7edab44cbab746f1ae",
+          "name": "arrow_clockwise",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/refresh_dark.svg",
+        "sha256": "fd9f41f74e24c4d0aa0b97cf3b6ea285e9d3eb4ef015e3147d6fba1acbd40214",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_clockwise.svg",
+          "sha256": "15246fd12ab39fbf3fea99df28c6ce7623ba573eccb0bf7edab44cbab746f1ae",
+          "name": "arrow_clockwise",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/refresh_selected_light.svg",
+        "sha256": "609c27ddd5f4b8afc2dbbd7ae3bcd2d5d3f00a993c7161a4d7a6c0750dc5ce7c",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_clockwise.svg",
+          "sha256": "15246fd12ab39fbf3fea99df28c6ce7623ba573eccb0bf7edab44cbab746f1ae",
+          "name": "arrow_clockwise",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/refresh_selected_dark.svg",
+        "sha256": "7949ba566b35b42ec3fa6b0c2f3cc988c5028621022126db7a56ad4aedc7a01b",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_clockwise.svg",
+          "sha256": "15246fd12ab39fbf3fea99df28c6ce7623ba573eccb0bf7edab44cbab746f1ae",
+          "name": "arrow_clockwise",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "search": {
+      "light": {
+        "file": "assets/search_light.svg",
+        "sha256": "a387393a45d1056cab1aa1fe469bd96316cb3bde343c19335b5b6bdd33dd17a6",
+        "source": {
+          "file": "scripts/ui/huawei/magnifyingglass.svg",
+          "sha256": "a4edd3154ccbea10b0c932329a74f2e328f07eab0c32852dbad82e213556c721",
+          "name": "magnifyingglass",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/search_dark.svg",
+        "sha256": "1c10724f57482017a735b2c54b1f35dc28d20f184519ab94a7e1f5cb77657649",
+        "source": {
+          "file": "scripts/ui/huawei/magnifyingglass.svg",
+          "sha256": "a4edd3154ccbea10b0c932329a74f2e328f07eab0c32852dbad82e213556c721",
+          "name": "magnifyingglass",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/search_selected_light.svg",
+        "sha256": "0b26b5e367106747be11cd1384c0595db38ee942601cd893328c8f0cafdf27c4",
+        "source": {
+          "file": "scripts/ui/huawei/magnifyingglass.svg",
+          "sha256": "a4edd3154ccbea10b0c932329a74f2e328f07eab0c32852dbad82e213556c721",
+          "name": "magnifyingglass",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/search_selected_dark.svg",
+        "sha256": "e945063628906d0737e8dce95cb720d522123bd812cac2e6e2f899db02b2f18b",
+        "source": {
+          "file": "scripts/ui/huawei/magnifyingglass.svg",
+          "sha256": "a4edd3154ccbea10b0c932329a74f2e328f07eab0c32852dbad82e213556c721",
+          "name": "magnifyingglass",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "more": {
+      "light": {
+        "file": "assets/more_light.svg",
+        "sha256": "ee04584610376dc6a489646e51affb7e35e86cece3d5509f23357b3a171110ff",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_more.svg",
+          "sha256": "28e34e9f3eecf789c68e6f182cc9bbef38ba8ee06d0c0fe312525774b8b981b2",
+          "name": "ohos_ic_public_more",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/more_dark.svg",
+        "sha256": "c1b0ed8fa046ff864d2d1d2f7ef08ebf8483a5ccff840ff4230e495a7755a16c",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_more.svg",
+          "sha256": "28e34e9f3eecf789c68e6f182cc9bbef38ba8ee06d0c0fe312525774b8b981b2",
+          "name": "ohos_ic_public_more",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/more_selected_light.svg",
+        "sha256": "c5d6b4e3cd2c474f03e7ec08a0823287215cb98313577e707abf6ec0373ef49e",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_more.svg",
+          "sha256": "28e34e9f3eecf789c68e6f182cc9bbef38ba8ee06d0c0fe312525774b8b981b2",
+          "name": "ohos_ic_public_more",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/more_selected_dark.svg",
+        "sha256": "1a4fd8d4b12586828f13ea5956c7c7f4641b0e11b3165dfd974d5fa5cd2053e3",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_more.svg",
+          "sha256": "28e34e9f3eecf789c68e6f182cc9bbef38ba8ee06d0c0fe312525774b8b981b2",
+          "name": "ohos_ic_public_more",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "back": {
+      "light": {
+        "file": "assets/back_light.svg",
+        "sha256": "78d968d741bdadcc8de5a7b6713f5f87ce975b3e825c75484e6adf9c5bf5c84d",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_left.svg",
+          "sha256": "8b2ff87b4ec0b5b0f08a2dacba44130677728acf84bbef74f9b543a393132526",
+          "name": "chevron_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/back_dark.svg",
+        "sha256": "c9d831adcb00f80d2747a0c96089e67c80374a6da887f78e81c12a7601680473",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_left.svg",
+          "sha256": "8b2ff87b4ec0b5b0f08a2dacba44130677728acf84bbef74f9b543a393132526",
+          "name": "chevron_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/back_selected_light.svg",
+        "sha256": "8c93228e9923bde2ae0e96c5874b6bf2a066d884a9163402c09d21beff9b5721",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_left.svg",
+          "sha256": "8b2ff87b4ec0b5b0f08a2dacba44130677728acf84bbef74f9b543a393132526",
+          "name": "chevron_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/back_selected_dark.svg",
+        "sha256": "738db3022a50d14a03340d7730a0f78a8e2a8111a167ff34482f6a0600639c8d",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_left.svg",
+          "sha256": "8b2ff87b4ec0b5b0f08a2dacba44130677728acf84bbef74f9b543a393132526",
+          "name": "chevron_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "chevron": {
+      "light": {
+        "file": "assets/chevron_light.svg",
+        "sha256": "6b23538752e858cde34e28413506bc41bcf14b350851aa93658f80505a47cc24",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_right.svg",
+          "sha256": "956d7eefbeb52872643ab5d3cc92007f283ec1eb8833072ae8f6413237caef37",
+          "name": "chevron_right",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/chevron_dark.svg",
+        "sha256": "177fb61a31f41c895bbdef3f75986a80441dd23cdca0724773fca858b2752f58",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_right.svg",
+          "sha256": "956d7eefbeb52872643ab5d3cc92007f283ec1eb8833072ae8f6413237caef37",
+          "name": "chevron_right",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/chevron_selected_light.svg",
+        "sha256": "ed74b29fc09d71205c7986b7b63b2f95ae5852266625719f3046981feb044ad6",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_right.svg",
+          "sha256": "956d7eefbeb52872643ab5d3cc92007f283ec1eb8833072ae8f6413237caef37",
+          "name": "chevron_right",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/chevron_selected_dark.svg",
+        "sha256": "fcec36748d2405c5866a6d45ca3c8fe9c70818f9ba75933d77773044f2f2367c",
+        "source": {
+          "file": "scripts/ui/huawei/chevron_right.svg",
+          "sha256": "956d7eefbeb52872643ab5d3cc92007f283ec1eb8833072ae8f6413237caef37",
+          "name": "chevron_right",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 12 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "keyboard": {
+      "light": {
+        "file": "assets/keyboard_light.svg",
+        "sha256": "fef73a094632714499d1b868e005a8111da0105f1453be965f047f464d954f84",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/keyboard_dark.svg",
+        "sha256": "85490e0308686d3104265dcc7bfbdeb6fe9f59e8fe279fb6d005c7425452dadd",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/keyboard_selected_light.svg",
+        "sha256": "6196ed868248dacd44ebcbe4934adeb02f8b0b2ec9b6152809734271188d1dce",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/keyboard_selected_dark.svg",
+        "sha256": "43df1f5dfc4e80165ab0dcd75cd6bb2e1b41ec9b9764e237ae53d929d90b2f1a",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "cursor": {
+      "light": {
+        "file": "assets/cursor_light.svg",
+        "sha256": "96385324dc259a853902eff5cb34f7fd885e78d804754851af0b78c7b00e6479",
+        "source": {
+          "file": "scripts/ui/huawei/hand_point_up_tap_fill.svg",
+          "sha256": "8c9ec6f5f837aa81e70a20db86568f475d7c839ed653bfb313be604eb088b69b",
+          "name": "hand_point_up_tap_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/cursor_dark.svg",
+        "sha256": "cef5d1c9d208482180fb3d897e6e46d984a5809d19c9042329d5cb03ced13126",
+        "source": {
+          "file": "scripts/ui/huawei/hand_point_up_tap_fill.svg",
+          "sha256": "8c9ec6f5f837aa81e70a20db86568f475d7c839ed653bfb313be604eb088b69b",
+          "name": "hand_point_up_tap_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/cursor_selected_light.svg",
+        "sha256": "c315587036f13c9337d6bed2d58b3c57735242556fd791e46f802849f22c3e95",
+        "source": {
+          "file": "scripts/ui/huawei/hand_point_up_tap_fill.svg",
+          "sha256": "8c9ec6f5f837aa81e70a20db86568f475d7c839ed653bfb313be604eb088b69b",
+          "name": "hand_point_up_tap_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/cursor_selected_dark.svg",
+        "sha256": "d5699025a5ed6cd26979c7c21c10699d812e28ec480296910f97cbc043e129cf",
+        "source": {
+          "file": "scripts/ui/huawei/hand_point_up_tap_fill.svg",
+          "sha256": "8c9ec6f5f837aa81e70a20db86568f475d7c839ed653bfb313be604eb088b69b",
+          "name": "hand_point_up_tap_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "quality": {
+      "light": {
+        "file": "assets/quality_light.svg",
+        "sha256": "f8877d637de8288fe0957f54f80341fe9fe301ae7a050502d3491732709ad2c4",
+        "source": {
+          "file": "scripts/ui/huawei/hd_square_fill.svg",
+          "sha256": "f0bae061313f2b6008d8d6489244bb0f43b199c3eceeb7af031e221fa2b7c18b",
+          "name": "hd_square_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/quality_dark.svg",
+        "sha256": "afea807f94de2edbf11350f6505c1a3cde978880af0f2b5a474be918b157f174",
+        "source": {
+          "file": "scripts/ui/huawei/hd_square_fill.svg",
+          "sha256": "f0bae061313f2b6008d8d6489244bb0f43b199c3eceeb7af031e221fa2b7c18b",
+          "name": "hd_square_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/quality_selected_light.svg",
+        "sha256": "06fe308467860b86866135a5791a3eea7145fea48956bdac48df08d660c16b61",
+        "source": {
+          "file": "scripts/ui/huawei/hd_square_fill.svg",
+          "sha256": "f0bae061313f2b6008d8d6489244bb0f43b199c3eceeb7af031e221fa2b7c18b",
+          "name": "hd_square_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/quality_selected_dark.svg",
+        "sha256": "6e93c0feca7d04d470c4b27b1cdc0055035bc2c511799644a27c68ecc7388e7c",
+        "source": {
+          "file": "scripts/ui/huawei/hd_square_fill.svg",
+          "sha256": "f0bae061313f2b6008d8d6489244bb0f43b199c3eceeb7af031e221fa2b7c18b",
+          "name": "hd_square_fill",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "folder": {
+      "light": {
+        "file": "assets/folder_light.svg",
+        "sha256": "d3e54eb5789ce39cc8b81d11246446b9dc65075e892d60db0e9af06899ff0ff0",
+        "source": {
+          "file": "scripts/ui/huawei/folder.svg",
+          "sha256": "931346ffed93aeb352d6042755565c394c90f8d187d42a884f289a4fb945ae0e",
+          "name": "folder",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/folder_dark.svg",
+        "sha256": "31f3cb0712ab03de98a6ab28b03b1c524bf24e0b5f788dfa80d69791cef15532",
+        "source": {
+          "file": "scripts/ui/huawei/folder.svg",
+          "sha256": "931346ffed93aeb352d6042755565c394c90f8d187d42a884f289a4fb945ae0e",
+          "name": "folder",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/folder_selected_light.svg",
+        "sha256": "2c21838af50194987a41fe3b238328a3efa91f57cbce5a978cadbea4e51a8eac",
+        "source": {
+          "file": "scripts/ui/huawei/folder.svg",
+          "sha256": "931346ffed93aeb352d6042755565c394c90f8d187d42a884f289a4fb945ae0e",
+          "name": "folder",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/folder_selected_dark.svg",
+        "sha256": "02fc119086b657453aec2bc8f8baf0fc6ae16bb122cc1caf52a7e1ebed6b5784",
+        "source": {
+          "file": "scripts/ui/huawei/folder.svg",
+          "sha256": "931346ffed93aeb352d6042755565c394c90f8d187d42a884f289a4fb945ae0e",
+          "name": "folder",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "terminal": {
+      "light": {
+        "file": "assets/terminal_light.svg",
+        "sha256": "fef73a094632714499d1b868e005a8111da0105f1453be965f047f464d954f84",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/terminal_dark.svg",
+        "sha256": "85490e0308686d3104265dcc7bfbdeb6fe9f59e8fe279fb6d005c7425452dadd",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/terminal_selected_light.svg",
+        "sha256": "6196ed868248dacd44ebcbe4934adeb02f8b0b2ec9b6152809734271188d1dce",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/terminal_selected_dark.svg",
+        "sha256": "43df1f5dfc4e80165ab0dcd75cd6bb2e1b41ec9b9764e237ae53d929d90b2f1a",
+        "source": {
+          "file": "scripts/ui/huawei/keyboard.svg",
+          "sha256": "34efe15b5ece31159b4aebabfb5bca8e9d9014ed0f5377218ab0fa86a09c7457",
+          "name": "keyboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "clipboard": {
+      "light": {
+        "file": "assets/clipboard_light.svg",
+        "sha256": "fcf30b526e8151ce70d9a96f8c991d4b43728812d280f3913209928e9c993c8f",
+        "source": {
+          "file": "scripts/ui/huawei/text_clipboard.svg",
+          "sha256": "c23be8f4ef1de328706cebd9b93b2e42bc5829b172ee8cebc00d66c353a8c915",
+          "name": "text_clipboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/clipboard_dark.svg",
+        "sha256": "a171e8e6ba057a3e468edcad5f63032677e0ac7f54de9e5b68681f1b6daed2fd",
+        "source": {
+          "file": "scripts/ui/huawei/text_clipboard.svg",
+          "sha256": "c23be8f4ef1de328706cebd9b93b2e42bc5829b172ee8cebc00d66c353a8c915",
+          "name": "text_clipboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/clipboard_selected_light.svg",
+        "sha256": "12068ff68b48600031ec6564bdef5833be755542522f70adc6d1f292de38e9b4",
+        "source": {
+          "file": "scripts/ui/huawei/text_clipboard.svg",
+          "sha256": "c23be8f4ef1de328706cebd9b93b2e42bc5829b172ee8cebc00d66c353a8c915",
+          "name": "text_clipboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/clipboard_selected_dark.svg",
+        "sha256": "029f773d743c5430887ea492d3c50292b7892f396c8ecec0bfdfcdb1b858f05d",
+        "source": {
+          "file": "scripts/ui/huawei/text_clipboard.svg",
+          "sha256": "c23be8f4ef1de328706cebd9b93b2e42bc5829b172ee8cebc00d66c353a8c915",
+          "name": "text_clipboard",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "close": {
+      "light": {
+        "file": "assets/close_light.svg",
+        "sha256": "c22b2f0f5a0c5d44ad4fa3425f77b684d8f79ed65b9226c5022dc71f5c80b831",
+        "source": {
+          "file": "scripts/ui/huawei/xmark.svg",
+          "sha256": "fcb440170a63ce1d7467e2491e4a8d477cdbb37671dcb3ff48c31f2963cfad87",
+          "name": "xmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/close_dark.svg",
+        "sha256": "41ccc4e91ef59fe63978b3cfc209ef8fab82d7eda101430a795882be909530a4",
+        "source": {
+          "file": "scripts/ui/huawei/xmark.svg",
+          "sha256": "fcb440170a63ce1d7467e2491e4a8d477cdbb37671dcb3ff48c31f2963cfad87",
+          "name": "xmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/close_selected_light.svg",
+        "sha256": "6995eb000149f1a602cec277f6adafc230b372fca2ef09f34d2d04b9704cbb49",
+        "source": {
+          "file": "scripts/ui/huawei/xmark.svg",
+          "sha256": "fcb440170a63ce1d7467e2491e4a8d477cdbb37671dcb3ff48c31f2963cfad87",
+          "name": "xmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/close_selected_dark.svg",
+        "sha256": "9499281cc5f3d636d023de1b52fe0bcd120770b0ae64d564a2ac82b231e6b4ae",
+        "source": {
+          "file": "scripts/ui/huawei/xmark.svg",
+          "sha256": "fcb440170a63ce1d7467e2491e4a8d477cdbb37671dcb3ff48c31f2963cfad87",
+          "name": "xmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "check": {
+      "light": {
+        "file": "assets/check_light.svg",
+        "sha256": "e6f04b8e276d9d2f9ef9d617ba315999e5869636e3415e30c17b25c44da43a67",
+        "source": {
+          "file": "scripts/ui/huawei/checkmark.svg",
+          "sha256": "2745b77fcea9d87bc3487b256d93702a8e07286cc642bf23f3a4da5a757baaf8",
+          "name": "checkmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/check_dark.svg",
+        "sha256": "7f7a03789d5da61e8c5bf286909f256d13526c201deadfc7c9843dcdb6a9ccac",
+        "source": {
+          "file": "scripts/ui/huawei/checkmark.svg",
+          "sha256": "2745b77fcea9d87bc3487b256d93702a8e07286cc642bf23f3a4da5a757baaf8",
+          "name": "checkmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/check_selected_light.svg",
+        "sha256": "2e6f3a2fe4753a84108485300a22b4f156c8b14f198be37f218ba47a161b7a9f",
+        "source": {
+          "file": "scripts/ui/huawei/checkmark.svg",
+          "sha256": "2745b77fcea9d87bc3487b256d93702a8e07286cc642bf23f3a4da5a757baaf8",
+          "name": "checkmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/check_selected_dark.svg",
+        "sha256": "adb9fa2a10bfef2c587a5afdb324be9149a896ba826d6989f54e15ae0f3ff1d8",
+        "source": {
+          "file": "scripts/ui/huawei/checkmark.svg",
+          "sha256": "2745b77fcea9d87bc3487b256d93702a8e07286cc642bf23f3a4da5a757baaf8",
+          "name": "checkmark",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "volume": {
+      "light": {
+        "file": "assets/volume_light.svg",
+        "sha256": "61968c003991f0d37adede8f1813425ffaebcb50b6935393aca45ae3e6fe1001",
+        "source": {
+          "file": "scripts/ui/huawei/speaker_wave_2.svg",
+          "sha256": "fd110ac268b65600ea1e285fc54475ff626784c1001c82314a57640d144468d6",
+          "name": "speaker_wave_2",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/volume_dark.svg",
+        "sha256": "c48f459eadd1ee76c87d646cf69474fe86f8d3eef1f33df51356147f16179d57",
+        "source": {
+          "file": "scripts/ui/huawei/speaker_wave_2.svg",
+          "sha256": "fd110ac268b65600ea1e285fc54475ff626784c1001c82314a57640d144468d6",
+          "name": "speaker_wave_2",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/volume_selected_light.svg",
+        "sha256": "7402e77c3ee458284d5fc2310d9005b4b1deffc5acfc01cc2ecc96d75e85ce29",
+        "source": {
+          "file": "scripts/ui/huawei/speaker_wave_2.svg",
+          "sha256": "fd110ac268b65600ea1e285fc54475ff626784c1001c82314a57640d144468d6",
+          "name": "speaker_wave_2",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/volume_selected_dark.svg",
+        "sha256": "5bbe3408dded68efe31dbd37c462f64baa79e479bdbca70b18cc4a48841e35ab",
+        "source": {
+          "file": "scripts/ui/huawei/speaker_wave_2.svg",
+          "sha256": "fd110ac268b65600ea1e285fc54475ff626784c1001c82314a57640d144468d6",
+          "name": "speaker_wave_2",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "host": {
+      "light": {
+        "file": "assets/host_light.svg",
+        "sha256": "e008f4e26fb6df31ded653dc86ff5343e689a25cec9a3f2a15db6dd68004dd57",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_cast_mirror.svg",
+          "sha256": "1caa931c3be8f1d0e0f04d7b18cef838b6fc9a0d7bc28775972197095179a3a8",
+          "name": "ohos_ic_public_cast_mirror",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/host_dark.svg",
+        "sha256": "cce0f6de246110beb0ebd45635a08040f508770973bc2bd6750e50b10892f244",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_cast_mirror.svg",
+          "sha256": "1caa931c3be8f1d0e0f04d7b18cef838b6fc9a0d7bc28775972197095179a3a8",
+          "name": "ohos_ic_public_cast_mirror",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/host_selected_light.svg",
+        "sha256": "4cdd4e7df301ccf0f7bda486528a4c383c5eb94efe4072992d4181b81dfe505a",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_cast_mirror.svg",
+          "sha256": "1caa931c3be8f1d0e0f04d7b18cef838b6fc9a0d7bc28775972197095179a3a8",
+          "name": "ohos_ic_public_cast_mirror",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/host_selected_dark.svg",
+        "sha256": "ec975d5a17781c3f1e0b002c81b4acc45160b57d2a69d72c3efd5c80b165f023",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_cast_mirror.svg",
+          "sha256": "1caa931c3be8f1d0e0f04d7b18cef838b6fc9a0d7bc28775972197095179a3a8",
+          "name": "ohos_ic_public_cast_mirror",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "rotate": {
+      "light": {
+        "file": "assets/rotate_light.svg",
+        "sha256": "f1d9fda5b1801509f6a5491b925f2a3eafbf5d48fb261edc1d91313a03fac0c9",
+        "source": {
+          "file": "scripts/ui/huawei/rectangle_portrait_rotate.svg",
+          "sha256": "8b6949753f013d9b1d3afe0828849595b3ae66713a3eb61df9e04126546bea60",
+          "name": "rectangle_portrait_rotate",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/rotate_dark.svg",
+        "sha256": "ba58d3b9c5b5f20a87617b96ecf73334354b6d418ac25a2ddef6a1dbec98e083",
+        "source": {
+          "file": "scripts/ui/huawei/rectangle_portrait_rotate.svg",
+          "sha256": "8b6949753f013d9b1d3afe0828849595b3ae66713a3eb61df9e04126546bea60",
+          "name": "rectangle_portrait_rotate",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/rotate_selected_light.svg",
+        "sha256": "7530caf8a0c87153cb4da8da016779bddeb5b4a62e7d009fd14622470da8a8a2",
+        "source": {
+          "file": "scripts/ui/huawei/rectangle_portrait_rotate.svg",
+          "sha256": "8b6949753f013d9b1d3afe0828849595b3ae66713a3eb61df9e04126546bea60",
+          "name": "rectangle_portrait_rotate",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/rotate_selected_dark.svg",
+        "sha256": "b279ee06d4d4e655e10cf0487ec1783b815fde72d0e73662f069964d7654fff1",
+        "source": {
+          "file": "scripts/ui/huawei/rectangle_portrait_rotate.svg",
+          "sha256": "8b6949753f013d9b1d3afe0828849595b3ae66713a3eb61df9e04126546bea60",
+          "name": "rectangle_portrait_rotate",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "pointer": {
+      "light": {
+        "file": "assets/pointer_light.svg",
+        "sha256": "179c9eddbcd3e3083c239b373a12f60175581e3a1ed76c0dae39bbc8901b898d",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_up_left.svg",
+          "sha256": "0716d38ce5d73cbd4f8713853e138a04673c72fc220c6ab38ea037542c9ab70a",
+          "name": "arrow_up_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/pointer_dark.svg",
+        "sha256": "876a7a4d37683581403314115192bfa0d5322f26e03d241f4d6c22e2cc4f42c8",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_up_left.svg",
+          "sha256": "0716d38ce5d73cbd4f8713853e138a04673c72fc220c6ab38ea037542c9ab70a",
+          "name": "arrow_up_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/pointer_selected_light.svg",
+        "sha256": "034e9105973294c672750ec6b09909510d382e13d09d79b581b989d886204669",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_up_left.svg",
+          "sha256": "0716d38ce5d73cbd4f8713853e138a04673c72fc220c6ab38ea037542c9ab70a",
+          "name": "arrow_up_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/pointer_selected_dark.svg",
+        "sha256": "9bb668297d08cd6d118654c23312f8194a6b782b0a2b4c844a464d62cb6a98ba",
+        "source": {
+          "file": "scripts/ui/huawei/arrow_up_left.svg",
+          "sha256": "0716d38ce5d73cbd4f8713853e138a04673c72fc220c6ab38ea037542c9ab70a",
+          "name": "arrow_up_left",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "drag": {
+      "light": {
+        "file": "assets/drag_light.svg",
+        "sha256": "c2b2082e253736c7778106b0a33698cfe292a41746b0de95fbabdb01af101bc1",
+        "source": {
+          "file": "scripts/ui/huawei/hand_draw.svg",
+          "sha256": "bdb1566474b73690e781a9c62182bb749d2bece5fd0e58b7c1a33fa1f3673793",
+          "name": "hand_draw",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/drag_dark.svg",
+        "sha256": "4ecc5e4f627f85e1b0ac1a9e92efaaa952952d2cb36c59063b38094f2ca63dfa",
+        "source": {
+          "file": "scripts/ui/huawei/hand_draw.svg",
+          "sha256": "bdb1566474b73690e781a9c62182bb749d2bece5fd0e58b7c1a33fa1f3673793",
+          "name": "hand_draw",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/drag_selected_light.svg",
+        "sha256": "bf276940300ab7a2790bc95a6da706372ecf1e90002418021699fd8618d6f9e5",
+        "source": {
+          "file": "scripts/ui/huawei/hand_draw.svg",
+          "sha256": "bdb1566474b73690e781a9c62182bb749d2bece5fd0e58b7c1a33fa1f3673793",
+          "name": "hand_draw",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/drag_selected_dark.svg",
+        "sha256": "5090535ec9b98b4644537ae7e6910fd04f2c1e26d1503b89ee7d3da8504e9482",
+        "source": {
+          "file": "scripts/ui/huawei/hand_draw.svg",
+          "sha256": "bdb1566474b73690e781a9c62182bb749d2bece5fd0e58b7c1a33fa1f3673793",
+          "name": "hand_draw",
+          "origin": "https://developer.huawei.com/consumer/cn/design/harmonyos-symbol/"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "mouse": {
+      "light": {
+        "file": "assets/mouse_light.svg",
+        "sha256": "e0513ca159dcf6cfbb0d6be92506c599b35574fb3c9b879949623d49d9241fb8",
+        "source": {
+          "file": "scripts/ui/huawei/mouse.svg",
+          "sha256": "3ad375171f7b0459253bcf027a4ece33958aa787ee58df6c129ae8753a2d525e",
+          "name": "mouse",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf mouse U+F03A6, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/mouse_dark.svg",
+        "sha256": "daeea8773344eb61fb42fe2d60b6b79d89dbbd7cb8148cb943c2cbe6c6d97312",
+        "source": {
+          "file": "scripts/ui/huawei/mouse.svg",
+          "sha256": "3ad375171f7b0459253bcf027a4ece33958aa787ee58df6c129ae8753a2d525e",
+          "name": "mouse",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf mouse U+F03A6, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/mouse_selected_light.svg",
+        "sha256": "f965e4338fdb6815dac58ecfeb80dba1b7af30f31bafc8a162101c4a91a28828",
+        "source": {
+          "file": "scripts/ui/huawei/mouse.svg",
+          "sha256": "3ad375171f7b0459253bcf027a4ece33958aa787ee58df6c129ae8753a2d525e",
+          "name": "mouse",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf mouse U+F03A6, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/mouse_selected_dark.svg",
+        "sha256": "3a6cabf60bfc8039efd3552cb38aa9596e3f4b015f9495ea01db2c333c122259",
+        "source": {
+          "file": "scripts/ui/huawei/mouse.svg",
+          "sha256": "3ad375171f7b0459253bcf027a4ece33958aa787ee58df6c129ae8753a2d525e",
+          "name": "mouse",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf mouse U+F03A6, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#8AB4FF"
+      }
+    },
+    "pip": {
+      "light": {
+        "file": "assets/pip_light.svg",
+        "sha256": "f23e0c377fcffaaae2338d42609a7a74cab00676c137f6001889c5883bba0c2c",
+        "source": {
+          "file": "scripts/ui/huawei/smal_window_playback.svg",
+          "sha256": "ad89f73cd59146c6e241c82341bc7c6537f48c7b27e75d0ea071fb27520ac5fd",
+          "name": "smal_window_playback",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf smal_window_playback U+F068D, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/pip_dark.svg",
+        "sha256": "16412630f5233b38213de75dc7371cf8e2590ecb61c41ac1731674a6b877872f",
+        "source": {
+          "file": "scripts/ui/huawei/smal_window_playback.svg",
+          "sha256": "ad89f73cd59146c6e241c82341bc7c6537f48c7b27e75d0ea071fb27520ac5fd",
+          "name": "smal_window_playback",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf smal_window_playback U+F068D, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/pip_selected_light.svg",
+        "sha256": "b3f598cd46374716a43cd7bffaa142e8316d680c1f73da130d94dd00f6822fdd",
+        "source": {
+          "file": "scripts/ui/huawei/smal_window_playback.svg",
+          "sha256": "ad89f73cd59146c6e241c82341bc7c6537f48c7b27e75d0ea071fb27520ac5fd",
+          "name": "smal_window_playback",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf smal_window_playback U+F068D, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/pip_selected_dark.svg",
+        "sha256": "3b430b103224be994f4e7993a5b1b08bac197a2016fe9cd8ae389db5230095a2",
+        "source": {
+          "file": "scripts/ui/huawei/smal_window_playback.svg",
+          "sha256": "ad89f73cd59146c6e241c82341bc7c6537f48c7b27e75d0ea071fb27520ac5fd",
+          "name": "smal_window_playback",
+          "origin": "DevEco SDK API 26 HMSymbolVF.ttf smal_window_playback U+F068D, unmodified glyph outline exported as SVG"
+        },
+        "viewBox": "0 0 1000 1000",
+        "color": "#8AB4FF"
+      }
+    },
+    "device_phone": {
+      "light": {
+        "file": "assets/device_phone_light.svg",
+        "sha256": "744fb49ffe98328337b36aa616657e6695d507a46805cbe44967009847468ae1",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_phone.svg",
+          "sha256": "32f5af208341e6e6e6ce0c51768f6e664e2a388c9874c4276e11ab20b772c58e",
+          "name": "ohos_ic_public_device_phone",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/device_phone_dark.svg",
+        "sha256": "2d3652c0e529987b926a3ebf047c8ecd30012832bc0ec1cb1ad03f3459fd22bf",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_phone.svg",
+          "sha256": "32f5af208341e6e6e6ce0c51768f6e664e2a388c9874c4276e11ab20b772c58e",
+          "name": "ohos_ic_public_device_phone",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/device_phone_selected_light.svg",
+        "sha256": "1eab0a0e02bbe0aa88617c6ab32546ce46180013fbb0d06a866c4682f99b52fe",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_phone.svg",
+          "sha256": "32f5af208341e6e6e6ce0c51768f6e664e2a388c9874c4276e11ab20b772c58e",
+          "name": "ohos_ic_public_device_phone",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/device_phone_selected_dark.svg",
+        "sha256": "4b84afa00c4bc735aba977c5659cd3c4b3761089c53744486d4abdd8d481eba2",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_phone.svg",
+          "sha256": "32f5af208341e6e6e6ce0c51768f6e664e2a388c9874c4276e11ab20b772c58e",
+          "name": "ohos_ic_public_device_phone",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    },
+    "device_tv": {
+      "light": {
+        "file": "assets/device_tv_light.svg",
+        "sha256": "239bb2d8924485e15df20bbb5b2e6d53083e7cf7cfc6e3b92d3a3193a0abff47",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_smartscreen.svg",
+          "sha256": "9f499f389065ff823f9afa9d98de7352348cd413720b9414acd05267e3db87be",
+          "name": "ohos_ic_public_device_smartscreen",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#182431"
+      },
+      "dark": {
+        "file": "assets/device_tv_dark.svg",
+        "sha256": "fa50864432f88329f0b9b8a9b262dba78d2ce17856c27ad3364843ed64204e62",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_smartscreen.svg",
+          "sha256": "9f499f389065ff823f9afa9d98de7352348cd413720b9414acd05267e3db87be",
+          "name": "ohos_ic_public_device_smartscreen",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#F1F3F5"
+      },
+      "selected_light": {
+        "file": "assets/device_tv_selected_light.svg",
+        "sha256": "b8399969f2923df1f1581d07b48e1c43a7c1403669bf64412d3bc8d247d69b0f",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_smartscreen.svg",
+          "sha256": "9f499f389065ff823f9afa9d98de7352348cd413720b9414acd05267e3db87be",
+          "name": "ohos_ic_public_device_smartscreen",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#0A59F7"
+      },
+      "selected_dark": {
+        "file": "assets/device_tv_selected_dark.svg",
+        "sha256": "c7f874c4b0753b21cd4d13347e35273831a78d5396e5c2a788e63e801f51a031",
+        "source": {
+          "file": "scripts/ui/huawei/ohos_ic_public_device_smartscreen.svg",
+          "sha256": "9f499f389065ff823f9afa9d98de7352348cd413720b9414acd05267e3db87be",
+          "name": "ohos_ic_public_device_smartscreen",
+          "origin": "DevEco SDK API 26 system resource SVG"
+        },
+        "viewBox": "0 0 24 24",
+        "color": "#8AB4FF"
+      }
+    }
+  }
+}

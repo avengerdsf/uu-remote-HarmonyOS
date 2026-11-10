@@ -1,0 +1,13 @@
+{
+  "float": [
+    { "name": "page_title_fp", "value": "24fp" },
+    { "name": "section_fp", "value": "20fp" },
+    { "name": "body_fp", "value": "16fp" },
+    { "name": "secondary_fp", "value": "14fp" },
+    { "name": "label_fp", "value": "12fp" },
+    { "name": "card_radius_vp", "value": "16vp" },
+    { "name": "panel_radius_vp", "value": "20vp" },
+    { "name": "dialog_radius_vp", "value": "24vp" },
+    { "name": "min_tap_vp", "value": "48vp" }
+  ]
+}

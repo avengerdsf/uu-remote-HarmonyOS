@@ -153,7 +153,7 @@ impl Peer {
                         _=tick.tick()=>{if !video {continue} receiver.expire()},
                     };
                     if output.pli {desktop.reset.store(true,Ordering::Release);desktop.pli.store(true,Ordering::Release);}
-                    for au in output.units {if desktop.units.push(super::media::AccessUnit{codec:receiver.codec(),data:au}) {desktop.reset.store(true,Ordering::Release);desktop.pli.store(true,Ordering::Release);}}
+                    for au in output.units {if desktop.units.push(au) {desktop.reset.store(true,Ordering::Release);desktop.pli.store(true,Ordering::Release);}}
                     if desktop.pli.load(Ordering::Acquire) && last_pli.elapsed()>=std::time::Duration::from_millis(250) {
                         desktop.pli.swap(false,Ordering::AcqRel);
                         if let Some(pc)=weak_pc.upgrade() {

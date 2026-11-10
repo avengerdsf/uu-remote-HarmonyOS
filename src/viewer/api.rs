@@ -33,7 +33,7 @@ fn english_message(msg: &str) -> Option<&'static str> {
     })
 }
 #[derive(Debug, PartialEq, Eq)]
-pub enum Error { AuthenticationExpired, Api(i32, String), InvalidResponse, Transport, MissingRoom, InvalidDevice, InvalidAssist, UnknownKeyboardPlatform }
+pub enum Error { AuthenticationExpired, Api(i32, String), InvalidResponse, Transport, MissingRoom, InvalidDevice, InvalidAssist, UnknownKeyboardPlatform, NoWakeAssistant }
 impl std::fmt::Display for Error {
     // The server's short message is user-facing (e.g. 2002 「被控端正在被远控中，无法发起连接」).
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -50,6 +50,7 @@ impl std::fmt::Display for Error {
             Error::InvalidResponse => f.write_str(crate::i18n::s("服务器响应格式无效","Invalid server response")),
             Error::MissingRoom => f.write_str(crate::i18n::s("服务器未返回可用的房间或信令信息","The server returned no usable room or signaling info")),
             Error::UnknownKeyboardPlatform => f.write_str(crate::i18n::s("无法确定目标键盘平台，不能启用控制","Unknown remote keyboard platform; control is disabled")),
+            Error::NoWakeAssistant => f.write_str(crate::i18n::s("没有在线的远程开机辅助设备。", "No online Wake-on-LAN helper is available.")),
             Error::Api(code, _) => f.write_str(&crate::tr!("连接请求失败（错误码 {code}）","Connection request failed (error {code})")),
             _ => write!(f, "viewer API: {self:?}"),
         }
@@ -176,6 +177,22 @@ impl Api {
         let (status, body) = self.request(reqwest::Method::POST, &path, None).await?;
         parse_ack(status, body)
     }
+
+    /// GameViewer 4.46 sendWakingDevice submits an empty signed POST to the cloud helpers.
+    pub async fn wake_device(&self, device: &str) -> Result<(), Error> {
+        if self.signer.creds.token.is_empty() || self.signer.creds.user_id.is_empty() {
+            return Err(Error::AuthenticationExpired);
+        }
+        let path = format!("/api/v1/device/{}/wake_on_lan/req", path_segment(device)?);
+        let (status, mut body) = self.request(reqwest::Method::POST, &path, None).await?;
+        let assistants = body.get("data").and_then(|data| data.get("assist_count")).and_then(Value::as_u64);
+        if let Some(body) = body.as_object_mut() { body.remove("msg"); }
+        parse_ack(status, body)?;
+        match assistants.ok_or(Error::InvalidResponse)? {
+            0 => Err(Error::NoWakeAssistant),
+            _ => Ok(()),
+        }
+    }
     /// Structure-only probe of the device list (status, JSON keys/types/lengths, never values).
     pub async fn devices_shape(&self, method: reqwest::Method) -> Result<String, Error> {
         let path = "/api/v1/device/list";
@@ -190,7 +207,17 @@ impl Api {
     }
     /// GET /api/v1/device/list → data {current_device, my_binded_devices[], others_shared_devices[]} (observed live).
     pub async fn device_list(&self) -> Result<Value, Error> {
-        let (status, body) = self.request(reqwest::Method::GET, "/api/v1/device/list", None).await?;
+        self.device_list_data("/api/v1/device/list").await
+    }
+    /// GameViewer 4.46 queryAllDeviceList uses GET and returns the three account device groups.
+    pub async fn device_groups(&self) -> Result<Value, Error> {
+        let data = self.device_list_data("/api/v1/device/groups/of/my").await?;
+        if ["desktop_devices", "mobile_devices", "tv_devices"].iter().any(|key| data.get(*key).is_some_and(Value::is_array)) {
+            Ok(data)
+        } else { Err(Error::InvalidResponse) }
+    }
+    async fn device_list_data(&self, path: &str) -> Result<Value, Error> {
+        let (status, body) = self.request(reqwest::Method::GET, path, None).await?;
         if body.get("code").and_then(Value::as_i64) == Some(1120) { return Err(Error::AuthenticationExpired); }
         if status != 200 || body.get("code").and_then(Value::as_i64) != Some(0) { return Err(Error::InvalidResponse); }
         body.get("data").cloned().ok_or(Error::InvalidResponse)
@@ -391,6 +418,45 @@ mod http_tests {
         assert!(requests[1].starts_with("POST /api/v1/room/join/by_device/synthetic-device "));
         assert!(requests[1].to_lowercase().contains("x-param-sign:"));
         assert_eq!(requests[1].split("\r\n\r\n").nth(1).unwrap(),r#"{"force_join":true}"#);
+    }
+    #[tokio::test]
+    async fn account_device_groups_use_the_official_signed_get() {
+        let data = json!({"desktop_devices": [], "mobile_devices": [{"device_id": "synthetic-phone"}], "tv_devices": []});
+        let (url, job) = server(vec![(200, json!({"code":0,"data":data.clone()}))]).await;
+        assert_eq!(Api::new(signer(), &url).device_groups().await, Ok(data));
+        let requests = job.await.unwrap();
+        assert!(requests[0].starts_with("GET /api/v1/device/groups/of/my "));
+        assert!(requests[0].to_lowercase().contains("x-param-sign:"));
+    }
+    #[tokio::test]
+    async fn wake_device_requires_a_signed_empty_post_and_a_cloud_helper() {
+        use std::collections::BTreeMap;
+        let (url, job) = server(vec![
+            (200, json!({"code":0,"data":{"assist_count":2}})),
+            (200, json!({"code":0,"data":{"assist_count":0,"current_device_in_same_network":true}})),
+            (200, json!({"code":0,"data":{"assist_count":-1}})),
+            (403, json!({"code":4100,"msg":"synthetic server detail"})),
+        ]).await;
+        let api = Api::new(UUAuthClient::new(Credentials {
+            user_id: "synthetic-user".into(), token: "synthetic-auth".into(),
+            sign_key: "synthetic-key".into(), ..Default::default()
+        }), &url);
+        assert_eq!(Api::new(signer(), &url).wake_device("fixture").await, Err(Error::AuthenticationExpired));
+        assert_eq!(api.wake_device("").await, Err(Error::InvalidDevice));
+        for expected in [Ok(()), Err(Error::NoWakeAssistant), Err(Error::InvalidResponse), Err(Error::Api(4100, String::new()))] {
+            assert_eq!(api.wake_device("fixture/a").await, expected);
+        }
+        let path = "/api/v1/device/fixture%2Fa/wake_on_lan/req";
+        for request in job.await.unwrap() {
+            let (headers, body) = request.split_once("\r\n\r\n").unwrap();
+            assert!(headers.starts_with(&format!("POST {path} ")));
+            assert_eq!(body, "");
+            let headers: BTreeMap<String, String> = headers.lines().skip(1).filter_map(|line| line.split_once(':'))
+                .map(|(key, value)| (key.to_ascii_lowercase(), value.trim().to_owned())).collect();
+            assert_eq!(headers["authorization"], "Bearer synthetic-auth");
+            assert_eq!(headers["content-type"], "application/json");
+            assert_eq!(headers["x-param-sign"], api.signer.sign_request("POST", path, &headers, body));
+        }
     }
     #[tokio::test]
     async fn assistance_uses_signed_json_and_only_http_endpoint_fallback() {
