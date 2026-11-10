@@ -102,6 +102,14 @@ export class RemoteSessionBackground {
       if (deviceInfo.sdkApiVersion >= 24) {
         await media.setBackgroundPlayMode(avSession.BackgroundPlayMode.ENABLE_BACKGROUND_PLAY);
       }
+      media.on('play', () => {
+        if (this.media !== media || this.generation < 0) { return; }
+        try {
+          wantAgent.trigger(agent, { code: 0 }, (error: BusinessError) => {
+            if (error) { this.logFailure('open remote view', error); }
+          });
+        } catch (error) { this.logFailure('open remote view', error as BusinessError); }
+      });
       await this.updateTitle(media);
       await media.setLaunchAbility(agent);
       await media.activate();
